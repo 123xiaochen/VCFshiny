@@ -1,0 +1,72 @@
+
+```{r}
+library(tidyverse)
+library(dplyr)
+
+file <- dir("merge.data/", pattern = "*", full.names = T)
+data <- lapply(file, function(x){
+  df <- read.table(x, sep = "\t", header = T)
+  
+})
+```
+
+```{r}
+df <- data[[1]]
+simplifed_df <- df %>% group_by(Func.refGene, Gene.refGene) %>% count()
+
+need_splite_df <- simplifed_df[grep(";", simplifed_df$Gene.refGene), ]
+no_splite_df <- simplifed_df[grep(";", simplifed_df$Gene.refGene, invert = T), ]
+
+
+splited_df <- lapply(1:nrow(need_splite_df), function(x){
+  data.frame(Func.refGene = need_splite_df[x, "Func.refGene"], Gene.refGene = stringr::str_split(need_splite_df[x, "Gene.refGene"], ";") %>% unlist, n = need_splite_df[x, "n"])
+}) %>% bind_rows()
+
+combined_df <- rbind(no_splite_df, splited_df)
+
+all_df <- combined_df %>% group_by(Func.refGene, Gene.refGene) %>% summarise_at(.vars = "n", sum)
+all_df$groups <- "AGBE-OT_NT"
+all_df$samples <- "AGBE-OT_NT-1"
+```
+
+
+```{r}
+df1 <- data[[2]]
+
+simplifed_df1 <- df1 %>% group_by(Func.refGene, Gene.refGene) %>% count()
+
+need_splite_df1 <- simplifed_df1[grep(";", simplifed_df1$Gene.refGene), ]
+no_splite_df1 <- simplifed_df1[grep(";", simplifed_df1$Gene.refGene, invert = T), ]
+
+
+splited_df1 <- lapply(1:nrow(need_splite_df1), function(x){
+  data.frame(Func.refGene = need_splite_df1[x, "Func.refGene"], Gene.refGene = stringr::str_split(need_splite_df1[x, "Gene.refGene"], ";") %>% unlist, n = need_splite_df1[x, "n"])
+}) %>% bind_rows()
+
+combined_df1 <- rbind(no_splite_df1, splited_df1)
+
+
+
+all_df1 <- combined_df1 %>% group_by(Func.refGene, Gene.refGene) %>% summarise_at(.vars = "n", sum)
+colnames(all_df1) <- c("Func.refGene","Gene.refGene", "n")
+all_df1$groups <- "AGBE-OT_NT"
+all_df1$samples <- "AGBE-OT_NT-2"
+```
+
+```{r}
+AGBE_data <- bind_rows(all_df, all_df1)
+AGBE_data[is.na(AGBE_data)] <- 0
+AGBE_data <- AGBE_data %>% group_by(Gene.refGene,n) %>% summarise_if(is.numeric, mean) %>% summarise_each(funs(sum))
+AGBE_data$n <- round(AGBE_data$n/3)
+round(AGBE_data$n)
+#summarise_each(funs(mean))
+```
+
+
+```{r}
+merge_data <- merge(all_df, all_df1, by = "Gene.refGene", all = T)
+merge_data <- merge_data[merge_data$Gene.refGene != "NONE" , ]
+merge_data[is.na(merge_data)] <- 0
+merge_data$Change <- log2(merge_data$n.x+1)- log2(merge_data$n.y+1)
+```
+
