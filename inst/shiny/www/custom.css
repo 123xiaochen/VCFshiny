@@ -58,7 +58,7 @@ margin-bottom: 0;
 }
 
 .progress.shiny-file-input-progress {
-visibility: hidden;
+visibility: 0;
 margin-bottom: 0;
 }
 
@@ -78,4 +78,29 @@ margin-bottom: 0;
 .content {
 overflow: visible;
 background-color: white;
+}
+
+.btn-default > i {
+  padding-right: 10px;
+}
+
+#input_file-label {
+  padding-top: 15px;
+}
+
+#shiny-tab-ALL_variants > div > div.col-sm-3 > div > div.box-body > div.form-group.shiny-input-container.shiny-input-radiogroup.shiny-input-container-inline {
+  padding-top: 10px;
+}
+
+#ALL_Variants_plot_label-label {
+  padding-top: 10px;
+}
+
+.sbs-modal > div {
+  width: 400px;
+}
+
+.sw-dropdown > sw-dropdown-content > sw-dropdown-in > a {
+  padding-left: 30px;
+  padding-right: 30px;
 }
