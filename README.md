@@ -22,6 +22,7 @@ for (i in bio_pkgs) {
 '''
 
 #### 2、Install the WGS-shiny package from github:
+
 '''
 ## you may need install devtools first
 ##install.packages("devtools")
