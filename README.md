@@ -12,7 +12,7 @@ WGS-shiny,an R shiny application that can be launched easily from a local web br
 if (!requireNamespace("BiocManager", quietly=TRUE))
     install.packages("BiocManager")
     
-## BiocManager::install("BiocUpgrade") ## you may need this
+##BiocManager::install("BiocUpgrade") ## you may need this
 bio_pkgs <- c("STRINGdb", "dplyr", "ggplot2", "circlize", "ggpubr", "shinydashboard", "clusterProfiler", "shiny", "enrichplot", "shinyWidgets", "tidyverse","shinyBS")
              
 for (i in bio_pkgs) {
@@ -23,13 +23,12 @@ for (i in bio_pkgs) {
 
 #### 2、Install the WGS-shiny package from github:
 
-'''
-## you may need install devtools first
+you may need install devtools first
 ##install.packages("devtools")
 devtools::install_github("123xiaochen/WGS-shiny")
-'''
-## Getting Start
 
+
+## Getting Start
 ## Documentation
 
 ## Development
