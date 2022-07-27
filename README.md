@@ -3,3 +3,4 @@ WGS-shiny,an R shiny application that can be launched easily from a local web br
 
 
 ## Analyse Flowchart
+![image](https://user-images.githubusercontent.com/95121465/181153538-2626aa85-79a4-4a0e-bd6c-b509d2db93b0.png)
