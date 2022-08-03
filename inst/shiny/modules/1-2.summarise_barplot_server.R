@@ -7,7 +7,7 @@ ALL_data <- reactive({
     SNV_numbers = dim(ALL_variants_vcf()[[i]])[1]
     samples = strsplit(names(ALL_variants_vcf())[i], ".",fixed = T)[[1]][1]
     group =  gsub("-[0-9]$|[0-9]$","",samples)
-    type = strsplit(names(ALL_variants_vcf())[i], ".",fixed = T)[[1]][2]
+    type = strsplit(names(ALL_variants_vcf())[i], ".",fixed = T)[[1]][length(strsplit(names(ALL_variants_vcf())[i], ".",fixed = T)[[1]])]
     ALL_Variants_summary <- rbind(ALL_Variants_summary,data.frame(group,samples,type,SNV_numbers))
   }
   return(ALL_Variants_summary)
@@ -43,7 +43,7 @@ Data_SummarisePlot <- eventReactive(input$Data_summarise_plot,{
     facet_wrap( ~ type, ncol = 4, scales = "free")+
     xlab(NULL)+ylab("WGS Total SNV numbers")+
     theme(text = element_text(face = "bold", family = "Times", size = input$text_size, color = "black"), legend.position = "none",
-          strip.background = element_blank())+
+          strip.background = element_blank(),axis.text.x = element_text(angle = 45, hjust = 1))+
     geom_jitter(size = input$jitter_size,width = input$jitter_width)
 
   if (!is.null(input$summ_ggText)) {

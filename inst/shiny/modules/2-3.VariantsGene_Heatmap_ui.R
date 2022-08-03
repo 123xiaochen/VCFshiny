@@ -19,7 +19,7 @@ tabItem(
         style = "padding:10px",
         radioGroupButtons("Variants_heatmap_show_rownames", "Show Rownames", c("TRUE", "FALSE"),
                           justified = T, checkIcon = list(yes = icon("ok", lib = "glyphicon")), width = "100%"),
-        radioGroupButtons("Variants_heatmap_show_colnames", "Show Colnames", c("TRUE", "FALSE"),
+        radioGroupButtons("Variants_heatmap_show_colnames", "Show Colnames", selected = "FALSE" ,c("TRUE","FALSE"),
                           justified = T, checkIcon = list(yes = icon("ok", lib = "glyphicon")), width = "100%"),
         sliderInput("Variants_heatmap_treeheight_row", "Treeheight Row", min = 0, max = 50, value = 20, step = 1, width = "100%"),
         sliderInput("Variants_heatmap_treeheight_col", "Treeheight Col", min = 0, max = 50, value = 20, step = 1, width = "100%")

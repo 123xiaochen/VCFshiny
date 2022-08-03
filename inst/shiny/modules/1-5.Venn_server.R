@@ -1,6 +1,7 @@
 #1-5、韦恩图（为做圈图取重复样本的交叉数据）---------------------------------------------------------------------------------------------------------------
 
 #1-5.1、添加行名
+
 venn_ALL_data <- reactive({
   ALL_variants_vcf <- ALL_variants_vcf()
   venn_ALL_data <- lapply(names(ALL_variants_vcf),function(x){
@@ -23,21 +24,25 @@ venn_ALL_data <- reactive({
 
 output$venn_group_id <- renderUI({
   if(!is.null(ALL_variants_vcf())){
-    group <- stringr::str_remove(names(ALL_variants_vcf()),"-[0-9].snp$|-[0-9].indel$|[0-9].snp$|[0-9].indel$") %>% unique()
+    ALL_data <- ALL_data()
+    group <- ALL_data$group
     selectInput("venn_group_ID","Select your group to analyse:", choices = group)
   }
 })
 
 vennPlot_data <- eventReactive(input$venn_star,{
   req(input$venn_group_ID, input$venn_type_id, input$venn_box, input$venn_ellipse, input$venn_ilcs, input$venn_sncs)
-
+  withProgress(message = "Analyse", min = 0, max = 1, {
   venn_ALL_data <- venn_ALL_data()
-  samples <- stringr::str_subset(names(venn_ALL_data),pattern = input$venn_group_ID, negate = F) %>% stringr::str_subset(pattern = input$venn_type_id, negate = F)
+  incProgress(0.4, detail = "Select Data ...")
+  samples <- stringr::str_subset(names(venn_ALL_data),pattern = input$venn_group_ID, negate = F) %>%
+    stringr::str_subset(pattern = input$venn_type_id, negate = F)
   venn_list <- lapply(samples, function(x){
     venn_ALL_data[[x]] %>% row.names()
   })
   names(venn_list) <- samples
   return(venn_list)
+  })
 })
 
 vennPlot <- eventReactive(input$venn_star,{
@@ -69,7 +74,8 @@ output$Venn_download_plot <- downloadHandler(
 #1-5.3 、提取对应的交叉数据并展示
 venn_table <- reactive({
   req(input$venn_group_ID, input$venn_type_id)
-  samples <- stringr::str_subset(names(venn_ALL_data()),pattern = input$venn_group_ID, negate = F) %>% stringr::str_subset(pattern = input$venn_type_id, negate = F)
+  samples <- stringr::str_subset(names(venn_ALL_data()),pattern = input$venn_group_ID, negate = F) %>%
+    stringr::str_subset(pattern = input$venn_type_id, negate = F)
 
   venn_binded <- lapply(samples, function(x){
     df <- ALL_variants_vcf()[[x]]
@@ -78,9 +84,9 @@ venn_table <- reactive({
 
 
   if("POS" %in% (names(venn_binded))){
-    venn_binded$Merge_Name <- paste(venn_binded$CHROM, venn_binded$POS, venn_binded$REF, venn_binded$ALT,sep = "_")
+    venn_binded$Merge_Name <- paste(venn_binded$CHROM, venn_binded$POS, venn_binded$REF, venn_binded$ALT, sep = "_")
   }else if("Start" %in% (names(venn_binded)) & "End" %in% (names(venn_binded))){
-    venn_binded$Merge_Name <- paste(venn_binded$Chr, venn_binded$Start, venn_binded$End, venn_binded$REF, venn_binded$ALT,sep = "_")
+    venn_binded$Merge_Name <- paste(venn_binded$Chr, venn_binded$Start, venn_binded$End, venn_binded$REF, venn_binded$ALT, sep = "_")
   }
   duplicated_row <- (venn_binded$Merge_Name %>% table() %>% as.data.frame() %>% dplyr::filter(Freq == max(Freq)))[,1]
   duplicated_row <- as.character(duplicated_row)
@@ -110,11 +116,17 @@ observeEvent(input$venn_star, {
 
 circle_table <- reactive({
   req(input$circle_type_ID)
-  group_table <- lapply((stringr::str_remove(names(venn_ALL_data()),"-[0-9].snp$|-[0-9].indel$|[0-9].snp$|[0-9].indel$") %>% unique()),function(x){
-    sample <- stringr::str_subset(names(venn_ALL_data()),pattern = x, negate = F) %>% stringr::str_subset(pattern = input$circle_type_ID, negate = F)
+  ALL_data <- ALL_data()
+  print(names(ALL_variants_vcf()))
+  group_table <- lapply(unique(ALL_data$group), function(x){
+    sample <- stringr::str_subset(names(ALL_variants_vcf()),  pattern = x, negate = F) %>%  stringr::str_subset(pattern = input$circle_type_ID, negate = F)
+    # print(sample)
+    # print(stringr::str_subset(sample, pattern = input$circle_type_ID, negate = F))
     circle_data <- lapply(sample,function(y){
       df <- ALL_variants_vcf()[[y]]
     }) %>% bind_rows()
+
+
 
     if("POS" %in% (names(circle_data))){
       circle_data$Merge_Name <- paste(circle_data$CHROM, circle_data$POS, circle_data$REF, circle_data$ALT,sep = "_")
@@ -127,7 +139,8 @@ circle_table <- reactive({
     circle_data <- subset(circle_data,select = -c(Merge_Name))
     return(circle_data)
   })
-  names(group_table) <- stringr::str_remove(names(venn_ALL_data()),"-[0-9].snp$|-[0-9].indel$|[0-9].snp$|[0-9].indel$") %>% unique()
+  print(length(group_table))
+  names(group_table) <- unique(ALL_data$group)
   #print("提取所有交叉数据OK")
   return(group_table)
 })

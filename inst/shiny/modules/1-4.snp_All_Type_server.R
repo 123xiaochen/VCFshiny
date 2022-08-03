@@ -53,7 +53,7 @@ All_Variants_type_plot <- eventReactive(input$ALL_Variantsplot, {
     theme(text = element_text(face = "bold",family = "Times",size = input$ALL_Variants_plot_Text_size,color = "black"),
           strip.background = element_blank())
 
-  if (!is.null(input$ALL_Variants_plot_ggText)) {
+  if (!is.null(input$ALL_Variants_plot_ggText)){
     add_funcs <- strsplit(input$ALL_Variants_plot_ggText, "\\+")[[1]]
     p <- p + lapply(add_funcs, function(x){
       eval(parse(text = x))

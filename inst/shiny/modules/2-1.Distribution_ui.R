@@ -22,8 +22,8 @@ tabItem(
          width = 12,
          sliderInput("distribution_error_bar_size","Error Bar Size", min = 0, max = 2, value = 0.5, step = 0.05, width = "100%"),
          sliderInput("distribution_error_bar_width", "Error Bar Width", min = 0, max = 1, value = 0.3, step = 0.05, width = "100%"),
-         sliderInput("distribution_jitter_size", "Distribution Jitter Size", min = 0, max = 5, value = 1, step = 0.5, width = "100%"),
-         sliderInput("distribution_jitter_width", "Distribution Jitter Width", min = 0, max = 1, value = 0.2,step = 0.01, width = "100%"),
+         # sliderInput("distribution_jitter_size", "Distribution Jitter Size", min = 0, max = 5, value = 1, step = 0.5, width = "100%"),
+         # sliderInput("distribution_jitter_width", "Distribution Jitter Width", min = 0, max = 1, value = 0.2,step = 0.01, width = "100%"),
          textAreaInput("distribution_ggText", "Add ggplot2 Codes:", rows = 5, width = "100%")
        )
       )

@@ -90,10 +90,11 @@ output$chrom_data <- renderUI({
 #
 
 
+
 #对读取数据根据group交互选择--------------
 output$sample_id <- renderUI({
   samples <- names(ALL_variants_vcf())
-  selectInput("sampleID", "Select your samples to view:", choices = samples, width = "30%")
+  selectInput("sampleID", "Select your samples to view:", choices = samples, width = "40%")
 })
 
 #对读取数据根据group交互选择后并进行显示

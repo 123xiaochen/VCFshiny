@@ -18,26 +18,34 @@ output$Variants_sample_id <- renderUI({
 
 Variants_genes <- reactive({
   ALL_variants_vcf <- ALL_variants_vcf()
-
+  print(length(ALL_variants_vcf))
   cl <- parallel::makeCluster(6)
-  Genes_DF <- parallel::parLapply(cl,names(ALL_variants_vcf), function(x){
+
+
+  Genes_DF <- parallel::parLapply(cl, names(ALL_variants_vcf), function(x){
+  #Genes_DF <- lapply(names(ALL_variants_vcf), function(x){
     require(dplyr)
     combined_df <- data.frame()
-
+    print(x)
     simplifed_df <- ALL_variants_vcf[[x]] %>% group_by(Func.refGene, Gene.refGene) %>% count()
-    need_splite_df <- simplifed_df[grep(";", simplifed_df$Gene.refGene), ]
-    no_splite_df <- simplifed_df[grep(";", simplifed_df$Gene.refGene, invert = T), ]
+    no_splite_df <- as.data.frame(simplifed_df[grep(";", simplifed_df$Gene.refGene, invert = T), ])
 
-    splited_df <- lapply(1:nrow(need_splite_df), function(y){
-      data.frame(Func.refGene = need_splite_df[y, "Func.refGene"],
-                 Gene.refGene = stringr::str_split(need_splite_df[y, "Gene.refGene"], ";") %>% unlist,
-                 n = need_splite_df[y, "n"])
-    }) %>% bind_rows()
 
-    combined_df <- rbind(no_splite_df, splited_df)
+
+    if(";" %in% simplifed_df$Gene.refGene){
+      need_splite_df <- simplifed_df[grep(";", simplifed_df$Gene.refGene), ]
+      splited_df <- lapply(1:nrow(need_splite_df), function(y){
+        df <- data.frame(Func.refGene = need_splite_df[y, "Func.refGene"],
+                         Gene.refGene = stringr::str_split(need_splite_df[y, "Gene.refGene"], ";") %>% unlist,
+                         n = need_splite_df[y, "n"])
+      }) %>% bind_rows()
+      combined_df <- rbind(no_splite_df, splited_df)
+    }else{
+      combined_df <- no_splite_df
+    }
     colnames(combined_df) <- c("Position", "Genes", "Numbers")
-
     combined_df <- combined_df[combined_df$Genes !=  "NONE", ]
+    return(combined_df)
   })
   parallel::stopCluster(cl)
 
@@ -58,8 +66,6 @@ Variants_ALL_genes <- reactive({
 })
 
 
-
-
 observeEvent(input$plot_Variants_genes, {
   req(input$Variants_sampleID, input$Variants_Genes_data_Set)
   output$Variants_df <- DT::renderDataTable(
@@ -77,6 +83,7 @@ observeEvent(input$plot_Variants_genes, {
     )
   )
 })
+
 
 #2-2.3、 绘制突变基因柱状图
 Variants_plot <- eventReactive(input$plot_Variants_genes, {

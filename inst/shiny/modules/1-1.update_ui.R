@@ -39,16 +39,19 @@ tabItem(
       column(
           12,
           wellPanel(
-          tags$h4("Explanation of input data and example data !"),
-          tags$li("Requirements for input data:"),
-          p("Before using it, first make sure that the file you input is a WGS analysis generated file, can be TXT file, VCF file or VCF.gz file, these files must be placed in a compressed file, can be *.gz, *.tar.gz, *.zip."),
-          p("The Variant Call Format (VCF) is used to record gene sequence variations.It is also the first file format to be understood for genome population correlation analysis.
-            The file is divided into two main parts: the Header comment section, which begins with #, and the body section.
-            The file is divided into two main parts: the Header comment section, which begins with #, and the body section.
-            The body part shall consist of at least 10 columns, with the specific meaning of each column:"),
+          tags$h3("Explanation of input data and example data !"),
+          tags$h4("Requirements for input data:"),
+          p("Before using, first read the Introduction to understand the file requirements named format, and then confirm that your input file is WGS analysis generated file, can be TXT file, VCF file or VCF. Gz file, and ensure that the input file is stored all data compressed folder"),
+          tags$li("Requirements for VCF input data:"),
+          p("The Variant Call Format (VCF) is used to record gene sequence variations.
+             It is also the first file format to be understood for genome population correlation analysis.
+             The file is divided into two main parts: the Header comment section, which begins with #, and the body section.
+            "),
+          tags$li("Requirements for TXT input data:"),
           p("TXT files are one of several output formats annotated by Annovar, which is able to analyze genetic variations in various genomes using the latest data.
-            Gene-based annotations reveal variant's direct relationship with known genes and its functional impact, while region-based annotations reveal Variant's relationship with specific segments of different genomes"),
-          tags$li("The source of example data:"),
+             Since the input data VCF file of Annovar software only contains the starting position of the mutation, it is necessary to adjust the input data before using, and add the end position of the mutation after the actual position of the mutation.
+             Gene-based annotations reveal variant's direct relationship with known genes and its functional impact, while region-based annotations reveal Variant's relationship with specific segments of different genomes"),
+          tags$h4("The source of example data:"),
           p("Sample data are reported from AGBE, published in Nucleic Acids Res:A dual deaminase-mediated base editor by fusing CGBE with ABE for creating a saturated mutant population with multiple editing patterns.
             The author has participated in the analysis of the relevant data in the paper, so three of the five data samples are selected as example data.")
         )

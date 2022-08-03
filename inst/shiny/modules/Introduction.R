@@ -4,7 +4,7 @@ tabItem(
   fluidPage(
     style = "margin-left:200px;margin-right:200px;",
     column(
-      3,
+      2,
       br(),
       tags$nav(
         id = "home_nav", class="affix",
@@ -21,8 +21,8 @@ tabItem(
       )
     ),
     column(
-      9,
-      includeMarkdown(system.file("markdown", "installation.md", package = "QRseq"))
+      10,
+      includeMarkdown("../markdown/installation.md")
     )
   )
 )

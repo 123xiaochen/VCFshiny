@@ -34,8 +34,8 @@ observeEvent(input$plot_distribution, {
 })
 #2-1.2 做位置分布柱状图
 distribution_plot <- eventReactive(input$plot_distribution, {
-  req(input$distribution_text_size, input$distribution_bar_width,input$distribution_error_bar_size, input$distribution_error_bar_width,
-      input$distribution_jitter_size, input$distribution_jitter_width)
+  req(input$distribution_text_size, input$distribution_bar_width,input$distribution_error_bar_size, input$distribution_error_bar_width)
+
   distribution_binded <- distribution_binded()
 
   p <- ggpubr::ggbarplot(distribution_binded,x = "Func.refGene", y = "percentage", palette = "Set1",
@@ -43,8 +43,7 @@ distribution_plot <- eventReactive(input$plot_distribution, {
                     add.params = list(width = input$distribution_error_bar_width, shape = "group", size = input$distribution_error_bar_size), ggtheme = theme_classic())+
     xlab(NULL) + ylab("Distribution Proportion of biotypes (%)")+
     theme(text = element_text(face = "bold",family = "Times",size = input$distribution_text_size,color = "black"),legend.position = "right",
-          strip.background = element_blank(),axis.text.x = element_text(angle = 45,hjust = 1))+
-    geom_jitter(size = input$distribution_jitter_size,width = input$distribution_jitter_width)
+          strip.background = element_blank(),axis.text.x = element_text(angle = 45,hjust = 1))
 
   if (!is.null(input$distribution_ggText)) {
     add_funcs <- strsplit(input$distribution_ggText, "\\+")[[1]]

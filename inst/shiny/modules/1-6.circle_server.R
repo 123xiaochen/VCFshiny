@@ -104,12 +104,12 @@ output$Circle_Elements_Colors <- renderUI({
 
 #1-6.3 绘制圈图
 Circle_Plot <- eventReactive(input$circle_star,{
-  withProgress(message = "processing", min = 0, max = 1, {
+  withProgress(message = "Loading Circle data...", min = 0, max = 1, {
   req(input$circle_type, input$Species, input$chrom_plotType, input$circle_type_ID, input$circle_text_size,
       input$track.height, input$track.margin1, input$track.margin2, input$track.gap.degree,
       input$start.degree, input$legend.x.position, input$legend.y.position, input$circle_elements_color)
 
-  circle_list <- circle_list()   #提取每百万reads数列表
+  circle_list <- circle_list() #提取每百万reads数列表
   circle_table <- circle_table() #提取venn交集数据表
 
   par(mar = c(1,1,1,1), lwd = 1, cex = 1.5)
@@ -122,13 +122,11 @@ Circle_Plot <- eventReactive(input$circle_star,{
   }else{
     circos.initializeWithIdeogram(species = input$Species, plotType = input$chrom_plotType)
   }
-  incProgress(0.4, detail = "Analyse Data ...")
+  incProgress(0.4, detail = "Analyse Circle data ...")
 
   text(0, 0, input$circle_type_ID , cex = 2*input$circle_text_size)
 
-  #col_fun = colorRamp2(c(0,length(circle_list)), c("blue", "red"))(1:length(circle_list))
   col_fun <- strsplit(input$circle_elements_color, ",")
-  print(col_fun)
   if(input$circle_type == "points"){
     req(input$points.size,input$points.alpha, input$points.pch)
     for(x in 1:length(circle_list)){
@@ -141,7 +139,7 @@ Circle_Plot <- eventReactive(input$circle_star,{
 
     }
   }else if(input$circle_type == "lines"){
-    #req(input$lines_type, input$lines_area, input$lines_lwd, input$lines_lty)
+    req(input$lines_type, input$lines_area, input$lines_lwd, input$lines_lty)
     for(x in 1:length(circle_list)){
       circlize::circos.genomicTrack(circle_list[[x]],
                                     panel.fun = function(region, value, ...) {
@@ -151,8 +149,7 @@ Circle_Plot <- eventReactive(input$circle_star,{
                                     },bg.border = "grey")
     }
   }else if(input$circle_type == "rectangles"){
-    #req(input$rectangles_ytop ,input$rectangles_ybottom)
-    print(input$Rect_up_color)
+    req(input$rectangles_ytop ,input$rectangles_ybottom)
     for(x in 1:length(circle_list)){
       circlize::circos.genomicTrack(circle_list[[x]],
                                     panel.fun = function(region, value, ...){
@@ -163,7 +160,7 @@ Circle_Plot <- eventReactive(input$circle_star,{
                                     },bg.border = "grey")
     }
   }
-  incProgress(0.6, detail = "Analyse Data ...")
+  incProgress(0.6, detail = "Plot Circle plot ...")
   legend(x = as.numeric(input$legend.x.position), y = as.numeric(input$legend.y.position), pch = 15, cex = input$circle_text_size, legend = names(circle_list), col = col_fun[[1]])
   })
   circos.clear()
@@ -199,9 +196,7 @@ output$CirclePlot_download <- downloadHandler(
     }
 
     text(0, 0, input$circle_type_ID , cex = 2*input$circle_text_size)
-
-    #col_fun = colorRamp2(c(0,length(circle_list)), c("blue", "red"))(1:length(circle_list))
-    col_fun <- input$circle_elements_color
+    col_fun <- strsplit(input$circle_elements_color, ",")
     if(input$circle_type == "points"){
       req(input$points.size,input$points.alpha, input$points.pch)
       for(x in 1:length(circle_list)){
@@ -209,7 +204,7 @@ output$CirclePlot_download <- downloadHandler(
                                       panel.fun = function(region, value, ...) {
                                         i = getI(...)
                                         circos.genomicPoints(region, value, pch = as.numeric(input$points.pch), cex = as.numeric(input$points.size),
-                                                             alpha = as.numeric(input$points.alpha) , col = col_fun[x], ...)
+                                                             alpha = as.numeric(input$points.alpha) , col = col_fun[[1]][x], ...)
                                       },bg.border = "grey")
 
       }
@@ -219,24 +214,23 @@ output$CirclePlot_download <- downloadHandler(
         circlize::circos.genomicTrack(circle_list[[x]],
                                       panel.fun = function(region, value, ...) {
                                         i = getI(...)
-                                        circos.genomicLines(region, value, type = input$lines_type, col = col_fun[x], border = col_fun[x], area = as.logical(input$lines_area),
+                                        circos.genomicLines(region, value, type = input$lines_type, col = col_fun[[1]][x], border = col_fun[[1]][x], area = as.logical(input$lines_area),
                                                             lwd = as.numeric(input$lines_lwd), lty = as.numeric(input$lines_lty), ...)
                                       },bg.border = "grey")
       }
     }else if(input$circle_type == "rectangles"){
       req(input$rectangles_ytop ,input$rectangles_ybottom)
-      print(input$Rect_up_color)
       for(x in 1:length(circle_list)){
         circlize::circos.genomicTrack(circle_list[[x]],
                                       panel.fun = function(region, value, ...) {
                                         i = getI(...)
-                                        circos.genomicRect(region, value, col = col_fun[x],border = col_fun[x],
+                                        circos.genomicRect(region, value, col = col_fun[[1]][x],border = col_fun[[1]][x],
                                                            ytop = as.numeric(input$rectangles_ytop) , ybottom = as.numeric(input$rectangles_ybottom),
                                                            ...)
                                       },bg.border = "grey")
       }
     }
-    legend(x = as.numeric(input$legend.x.position), y = as.numeric(input$legend.y.position), pch = 15, cex = input$circle_text_size, legend = names(circle_list), col = col_fun)
+    legend(x = as.numeric(input$legend.x.position), y = as.numeric(input$legend.y.position), pch = 15, cex = input$circle_text_size, legend = names(circle_list), col = col_fun[[1]])
 
     circos.clear()
 

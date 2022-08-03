@@ -14,15 +14,16 @@ Variants_heatmap_data <- reactive({
   Variants_ALL_genes <- Variants_ALL_genes()
   sample_ID <- stringr::str_subset(names(Variants_ALL_genes), pattern = input$Variants_heatmap_types, negate = F)
 
-
   Variants_heatmap_df <- lapply(sample_ID, function(x){
 
     df <- Variants_ALL_genes[[x]]
+
     df <- df[df$Position == input$Variants_position_ID, ]
     df <- df[order(df$Numbers, decreasing = T), ][1:input$Variants_heatmap_numbers, ]
     name <- gsub("-", "_", x)
     colnames(df) <- c("Position", "Genes", name)
     df <- as.data.frame(df)
+    df <- na.omit(df)
   }) %>% plyr::join_all(by = "Genes", type = "full")
 
   Variants_heatmap_df[is.na(Variants_heatmap_df)] <- 0
@@ -49,14 +50,15 @@ observeEvent(input$Variants_heatmap, {
 
 #2-3.2 、 绘制热图
 Variants_Genes_heatmap_plot <- eventReactive(input$Variants_heatmap, {
+  withProgress(message = "processing", min = 0, max = 1, {
   req(input$Variants_heatmap_show_rownames, input$Variants_heatmap_show_colnames, input$Variants_heatmap_treeheight_row, input$Variants_heatmap_treeheight_col)
   Variants_heatmap_data <- as.data.frame(Variants_heatmap_data())
-
+  incProgress(0.4, detail = "Analyse Data ...")
   Variants_heatmap_data <- Variants_heatmap_data[ , -(colnames(Variants_heatmap_data) == "Position")]
   Variants_heatmap_data <- Variants_heatmap_data %>% dplyr::group_by(Genes) %>% dplyr::summarise_each(funs(sum))
 
   Variants_heatmap_data <- as.data.frame(Variants_heatmap_data)
-
+  incProgress(0.8, detail = "Plot Heatmap...")
   rownames(Variants_heatmap_data) <- Variants_heatmap_data$Genes
   Variants_heatmap_data <- Variants_heatmap_data[ , -(colnames(Variants_heatmap_data) == "Genes")]
   Variants_heatmap_data <- Variants_heatmap_data[apply(Variants_heatmap_data, 1, function(x) sd(x) != 0), ]
@@ -69,7 +71,7 @@ Variants_Genes_heatmap_plot <- eventReactive(input$Variants_heatmap, {
 
   return(p)
   })
-
+})
 
 
 output$VariantsGenes_Heatmap_Plot <- renderPlot({

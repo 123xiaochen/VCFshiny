@@ -23,11 +23,11 @@ tabItem(
           checkboxGroupButtons("chrom_plotType","Chrom plotType:",c("axis",  "labels", "ideogram"),selected = c("ideogram","labels"),
                                justified = T, checkIcon = list(yes = icon("ok",lib = "glyphicon"))),
           sliderInput("circle_text_size","Text Size:",min = 0, max = 5, value = 0.8, step = 0.1, width = "100%"),
-          sliderInput("track.height","Track.height:",min = 0, max = 0.5,value = 0.15, step = 0.01, width = "100%"),
+          sliderInput("track.height","Track.height:",min = 0, max = 0.3,value = 0.10, step = 0.01, width = "100%"),
           sliderInput("start.degree", "Start.degree:", min = 0, max = 180,value = 90, step = 1, width = "100%"),
           sliderInput("track.margin1","Track.margin 1:",  min = 0, max = 0.1, value = 0.01, step = 0.01, width = "100%"),
           sliderInput("track.margin2","Track.margin 2:", min = 0, max = 0.1, value = 0.005, step = 0.01, width = "100%"),
-          sliderInput("track.gap.degree","Track.gap.width:", min = 0, max = 10,value = 0.5, step = 0.1, width = "100%")
+          sliderInput("track.gap.degree","Track.gap.width:", min = 0, max = 5,value = 0.5, step = 0.1, width = "100%")
       )
     ),
     box(

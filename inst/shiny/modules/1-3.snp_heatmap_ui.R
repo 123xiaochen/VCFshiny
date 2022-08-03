@@ -4,7 +4,7 @@ tabItem(
     box(
       title = "Set SNP Heatmap Plot",width = 3, status = "info", collapsible = T,
       sliderInput("heatmap_text.size","Text Size:", min = 0, max = 30, value = 18, step = 1, width = "100%"),
-      sliderInput("heatmap_ncol", "Snp Heatmap Cols:", min = 1, max = 6, value = 3, width = "100%"),
+      sliderInput("heatmap_ncol", "Snp Heatmap Cols:", min = 1, max = 6, value = 2, width = "100%"),
       sliderInput("heatmap_digits", "Snp Heatmap Significant Digits:", min = 0, max = 5, value = 2, width = "100%"),
       textInput("heatmap_color", "Snp Heatmap High Freq Color:", value = "#2A71AF", width = "100%"),
       h4("Display Plot:"),

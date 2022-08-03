@@ -13,9 +13,8 @@ output$chrom_data <- renderUI({
 
 #读取数据
 ALL_variants_vcf <- eventReactive(input$sample_data, {
-  withProgress(message = "processing", min = 0, max = 1, {
+  withProgress(message = "Uncompressing file ...", min = 0, max = 1, {
   req(input$use_example)
-  print(input$use_example)
 
   if (input$use_example){
     vcf_example <- readRDS("../extdata/example_data.rds")
@@ -27,7 +26,7 @@ ALL_variants_vcf <- eventReactive(input$sample_data, {
       }else if(strsplit(input$input_file$name,".",fixed = T)[[1]][length(strsplit(input$input_file$name,".",fixed = T)[[1]])] == "zip"){
         utils::unzip(input$input_file$datapath, exdir = ".")
       }
-      incProgress(0.2, detail = "uncompressing file...")
+      incProgress(0.2, detail = "Loading file ...")
 
       file_split_name <- strsplit(list.files(stringr::str_remove(input$input_file$name, pattern = ".gz|.zip|.tar.gz")), ".", fixed = T) #压缩包内部文件名字
       if(file_split_name[[1]][length(file_split_name[[1]])] == "gz"){
@@ -51,13 +50,11 @@ ALL_variants_vcf <- eventReactive(input$sample_data, {
           req( input$separator)
           ALL <- read.table(x, header = T, sep = input$separator)#读取txt.gz,并对Ref、Alt两列改名，方便后面使用
         })
-
         names(ALL_df_List) <- (file_names)
       }
       #删除解压的文件夹
       unlink(strsplit(input$input_file$name,".",fixed = T)[[1]][1], recursive = T)
 
-      incProgress(0.4, detail = "loading file...")
       #对数据的其中两列改名
       ALL_df_List1 <- lapply(names(ALL_df_List),function(x){
         if("Start" %in% names(ALL_df_List[[x]]) & "End" %in% names(ALL_df_List[[x]])){
@@ -69,17 +66,20 @@ ALL_variants_vcf <- eventReactive(input$sample_data, {
       })
       names(ALL_df_List1) <- file_names
       #分割SNP、Indel 数据
-      if("snp" %in% strsplit(names(ALL_df_List)[1],".",fixed = T)[[1]] | "indel" %in% strsplit(names(ALL_df_List)[1],".",fixed = T)[[1]]){ #检测是否已经分过SNP、Indel了
+      incProgress(0.4, detail = "Separation Data...")
+
+      if("snp" %in% strsplit(names(ALL_df_List1)[1],".",fixed = T)[[1]] | "indel" %in% strsplit(names(ALL_df_List)[1],".",fixed = T)[[1]]){ #检测是否已经分过SNP、Indel了
         return(ALL_df_List1)
       }else{
         ALL_df_List1.snp <- lapply((1:length(ALL_df_List1)),function(x){
           df <- ALL_df_List1[[x]]
-          df <- df[nchar(df$REF) == nchar(df$ALT),]
+          df <- df[nchar(df$REF) == nchar(df$ALT), ]
         })
         names(ALL_df_List1.snp) <- paste(names(ALL_df_List),"snp", sep = ".")
+
         ALL_df_List1.indel <- lapply((1:length(ALL_df_List1)),function(x){
           df <- ALL_df_List1[[x]]
-          df <- df[nchar(df$REF) != nchar(df$ALT),]
+          df <- df[nchar(df$REF) != nchar(df$ALT), ]
         })
         names(ALL_df_List1.indel) <- paste(names(ALL_df_List),"indel", sep = ".")
         ALL_df_List1 <- append(ALL_df_List1.indel,ALL_df_List1.snp)

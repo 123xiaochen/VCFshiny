@@ -2,14 +2,18 @@
 
 #2-4.1、构建选择控件
 output$DESeq_group_1 <- renderUI({
-  ALL_variants_vcf <- ALL_variants_vcf()
-  groups <- stringr::str_remove(names(ALL_variants_vcf()),"-[0-9].snp$|-[0-9].indel$|[0-9].snp$|[0-9].indel$") %>% unique()
+  #ALL_variants_vcf <- ALL_variants_vcf()
+  #groups <- stringr::str_remove(names(ALL_variants_vcf()),"-[0-9].snp$|-[0-9].indel$|[0-9].snp$|[0-9].indel$") %>% unique()
+  ALL_data <- ALL_data()
+  groups <- ALL_data$group
   selectInput("DESeq_group_ID1", "Select Your Reference Group:", choices = groups, width = "100%")
 })
 
 output$DESeq_group_2 <- renderUI({
-  ALL_variants_vcf <- ALL_variants_vcf()
-  groups <- stringr::str_remove(names(ALL_variants_vcf()),"-[0-9].snp$|-[0-9].indel$|[0-9].snp$|[0-9].indel$") %>% unique()
+  # ALL_variants_vcf <- ALL_variants_vcf()
+  # groups <- stringr::str_remove(names(ALL_variants_vcf()),"-[0-9].snp$|-[0-9].indel$|[0-9].snp$|[0-9].indel$") %>% unique()
+  ALL_data <- ALL_data()
+  groups <- ALL_data$group
   selectInput("DESeq_group_ID2", "Select Your Test Group:", choices = groups, width = "100%")
 })
 
@@ -22,9 +26,9 @@ output$DESeq_position_id <- renderUI({
 #2-4.2、提取两组间差异基因
 DE_genes_df <- reactive({
   Variants_ALL_genes <- Variants_ALL_genes()
-  samples_1 <- stringr::str_subset(names(Variants_ALL_genes),pattern = input$DESeq_group_ID1, negate = F) %>%
+  samples_1 <- stringr::str_subset(names(Variants_ALL_genes), pattern = input$DESeq_group_ID1, negate = F) %>%
     stringr::str_subset(pattern = input$DESeq_Type_ID, negate = F)
-  samples_2 <- stringr::str_subset(names(Variants_ALL_genes),pattern = input$DESeq_group_ID2, negate = F) %>%
+  samples_2 <- stringr::str_subset(names(Variants_ALL_genes), pattern = input$DESeq_group_ID2, negate = F) %>%
     stringr::str_subset(pattern = input$DESeq_Type_ID, negate = F)
 
   merge_data_1 <- lapply(samples_1, function(x){
