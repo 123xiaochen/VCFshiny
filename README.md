@@ -7,28 +7,33 @@ WGS-shiny,an R shiny application that can be launched easily from a local web br
 ## Features
 
 ## Installing
-#### 1、Install the dependencies from Bioconductor:
-'''
-if (!requireNamespace("BiocManager", quietly=TRUE))
-    install.packages("BiocManager")
-    
-##BiocManager::install("BiocUpgrade") ## you may need this
-bio_pkgs <- c("STRINGdb", "dplyr", "ggplot2", "circlize", "ggpubr", "shinydashboard", "clusterProfiler", "shiny", "enrichplot", "shinyWidgets", "tidyverse","shinyBS")
-             
-for (i in bio_pkgs) {
-  if (!requireNamespace(i, quietly=TRUE))
-  BiocManager::install(i)
-}
-'''
 
-#### 2、Install the WGS-shiny package from github:
+#### Install the WGS-shiny package from github:
 
-you may need install devtools first
+- you may need install devtools first
+```
 ##install.packages("devtools")
 devtools::install_github("123xiaochen/WGS-shiny")
-
+```
 
 ## Getting Start
+### Input data Requirements
+- The input file requires all data to be stored in a compressed folder in the format of the file name.
+
+#### Input Compress Files Requirements
+
+- The compressed file name must be the same as the name of the compressed folder.
+- The compressed file can be in *.tar. gz or *.zip format.
+
+#### Input File Name Requirements 
+
+- The first box represents the sample name, which can be the group of experiments and the number of repetitions, connected by the character "-" or "_".
+- The second box represents the data type, which can be snp or indel data. When snp and indel are not classified in the data, this box can be absent.
+- The third box represents the data format, which can be vcf files, vcf. gz compressed files, and Annovar annotated TXT files.
+- The contents of the three boxes are connected by ".".
+
+### Start your anlysis
+
 ## Documentation
 
 ## Development
