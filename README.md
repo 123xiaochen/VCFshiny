@@ -37,6 +37,6 @@ devtools::install_github("123xiaochen/WGS-shiny")
 ## Development
 WGS-shiny development takes place on Github: https://github.com/123xiaochen/WGS-shiny
 
-Please submit any reproducible bugs you encounter to the issue tracker
+Please submit any reproducible bugs you encounter to the <a href="https://github.com/123xiaochen/WGS-shiny/issues" target="_blank">issue tracker</a>
 
 We will also put most commonly encountered issues in the FAQ page.
