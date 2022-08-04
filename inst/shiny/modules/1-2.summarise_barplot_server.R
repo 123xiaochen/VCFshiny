@@ -6,7 +6,7 @@ ALL_data <- reactive({
   for(i in 1:length(ALL_variants_vcf())){
     SNV_numbers = dim(ALL_variants_vcf()[[i]])[1]
     samples = strsplit(names(ALL_variants_vcf())[i], ".",fixed = T)[[1]][1]
-    group =  gsub("-[0-9]$|[0-9]$","",samples)
+    group =  gsub("-[0-9]$|_[0-9]$","",samples)
     type = strsplit(names(ALL_variants_vcf())[i], ".",fixed = T)[[1]][length(strsplit(names(ALL_variants_vcf())[i], ".",fixed = T)[[1]])]
     ALL_Variants_summary <- rbind(ALL_Variants_summary,data.frame(group,samples,type,SNV_numbers))
   }

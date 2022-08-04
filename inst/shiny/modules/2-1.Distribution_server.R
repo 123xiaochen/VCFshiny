@@ -4,12 +4,12 @@ distribution_binded <- reactive({
   req(input$distribution_type_id)
   distribution_bind <- data.frame()
   sample_ID <-stringr::str_subset(names(ALL_variants_vcf()),pattern = input$distribution_type_id, negate = F)
-  groups_ID <- stringr::str_remove(names(ALL_variants_vcf()),"-[0-9].snp$|-[0-9].indel$|[0-9].snp$|[0-9].indel$") %>% unique()
+  groups_ID <- stringr::str_remove(names(ALL_variants_vcf()),"-[0-9].snp$|-[0-9].indel|_[0-9].snp$|_[0-9].indel$") %>% unique()
 
   for(x in sample_ID){
     data <- ALL_variants_vcf()[[x]]
     sample_name <- strsplit(x, ".",fixed = T)[[1]][1]
-    group <- gsub("-[0-9]$|[0-9]$","",sample_name)
+    group <- gsub("-[0-9]$|_[0-9]$","",sample_name)
     data <- data %>% dplyr::group_by(Func.refGene) %>% summarise(percentage = (n()/nrow(data))*100)
     distribution_bind <- rbind(distribution_bind, data.frame(group, sample_name, data))
   }

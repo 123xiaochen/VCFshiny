@@ -10,7 +10,7 @@ SNP_heatmap_Data <-reactive({
         REF <- y
         ALT <- z
         samples <- strsplit(names(SNP_data())[x], ".",fixed = T)[[1]][1]
-        group <- gsub("-[0-9]$|[0-9]$","",samples)
+        group <- gsub("-[0-9]$|_[0-9]$","",samples)
         freq <- SNP_numbers / dim(SNP_data()[[x]])[1]
         SNP_heatmap_data <- rbind(SNP_heatmap_data,data.frame(samples,group,REF,ALT,SNP_numbers,freq))
       }

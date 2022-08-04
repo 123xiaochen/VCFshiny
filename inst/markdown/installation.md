@@ -31,9 +31,9 @@ devtools::install_github("123xiaochen/WGS-shiny")
 
 <h4 style="width:100%; text-align:left;font-family:&#39;Times New Roman&#39;, Times, serif;"> Input File Name Requirements </h4>
 
-<img src="../shiny/www/images/Input File Format.png" width="65%" style="clear: both;display: block;margin: left;"/>
+<img src="../shiny/www/images/Input File Format.png" width="75%" style="clear: both;display: block;margin: left;"/>
 
-- The first box represents the name of the sample, which can be the experimental group - experimental repeat number.
+- The first box represents the sample name, which can be the group of experiments and the number of repetitions, connected by the character "-" or "_".
 - The second box represents the data type, which can be snp or indel data. When snp and indel are not classified in the data, this box can be absent.
 - The third box represents the data format, which can be vcf files, vcf. gz compressed files, and Annovar annotated TXT files.
 - The contents of the three boxes are connected by ".".

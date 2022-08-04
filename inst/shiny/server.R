@@ -47,7 +47,7 @@ ALL_variants_vcf <- eventReactive(input$sample_data, {
         file_path <- dir(stringr::str_remove(string = input$input_file$name, pattern = ".gz|.zip|tar.gz"), pattern = "*.txt$", full.name = T)#构建文件夹路径
         file_names <- dir(stringr::str_remove(string = input$input_file$name, pattern = ".gz|.zip|tar.gz"), pattern = "*.txt$") %>%　stringr::str_remove(".txt")#构建去后缀后的文件名
         ALL_df_List <- lapply(file_path, function(x){
-          req( input$separator)
+          req(input$separator)
           ALL <- read.table(x, header = T, sep = input$separator)#读取txt.gz,并对Ref、Alt两列改名，方便后面使用
         })
         names(ALL_df_List) <- (file_names)
@@ -82,10 +82,13 @@ ALL_variants_vcf <- eventReactive(input$sample_data, {
           df <- df[nchar(df$REF) != nchar(df$ALT), ]
         })
         names(ALL_df_List1.indel) <- paste(names(ALL_df_List),"indel", sep = ".")
+
         ALL_df_List1 <- append(ALL_df_List1.indel,ALL_df_List1.snp)
+
         return(ALL_df_List1)
       }
   }
+
    })
 })
 
