@@ -4,8 +4,6 @@ WGS-shiny,an R shiny application that can be launched easily from a local web br
 ## Analyse Flowchart
 ![image](https://user-images.githubusercontent.com/95121465/181185498-f3db2952-f1e8-4848-85cc-263c31b6b13d.png)
 
-## Features
-
 ## Installing
 
 #### Install the WGS-shiny package from github:
@@ -21,12 +19,12 @@ devtools::install_github("123xiaochen/WGS-shiny")
 - The input file requires all data to be stored in a compressed folder in the format of the file name.
 
 #### Input Compress Files Requirements
-
+![image](https://github.com/123xiaochen/WGS-shiny/blob/main/inst/shiny/www/images/Fold_Format.png)
 - The compressed file name must be the same as the name of the compressed folder.
 - The compressed file can be in *.tar. gz or *.zip format.
 
 #### Input File Name Requirements 
-
+![image](https://github.com/123xiaochen/WGS-shiny/blob/main/inst/shiny/www/images/Input%20File%20Format.png)
 - The first box represents the sample name, which can be the group of experiments and the number of repetitions, connected by the character "-" or "_".
 - The second box represents the data type, which can be snp or indel data. When snp and indel are not classified in the data, this box can be absent.
 - The third box represents the data format, which can be vcf files, vcf. gz compressed files, and Annovar annotated TXT files.
