@@ -31,7 +31,7 @@ devtools::install_github("123xiaochen/WGS-shiny")
 - The contents of the three boxes are connected by ".".
 
 ### Start your anlysis
-
+![image](https://github.com/123xiaochen/WGS-shiny/blob/main/inst/shiny/www/images/startPage.png)
 ## Documentation
 
 ## Development
