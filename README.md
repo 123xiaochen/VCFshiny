@@ -33,7 +33,7 @@ devtools::install_github("123xiaochen/WGS-shiny")
 ### Start your anlysis
 ![image](https://github.com/123xiaochen/WGS-shiny/blob/main/inst/shiny/www/images/startPage.png)
 ## Documentation
-
+The documentation is available at <a href="https://github.com/123xiaochen/WGS-shiny" target="_blank"> here </a>, the doc include a tutorial and example gallery.
 ## Development
 WGS-shiny development takes place on Github: https://github.com/123xiaochen/WGS-shiny
 
