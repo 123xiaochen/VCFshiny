@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 3 Run The App | WGS Shiny Description Document</title>
+  <meta name="description" content="WGS-shiny software Usage Instructions" />
+  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 3 Run The App | WGS Shiny Description Document" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="WGS-shiny software Usage Instructions" />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 3 Run The App | WGS Shiny Description Document" />
+  
+  <meta name="twitter:description" content="WGS-shiny software Usage Instructions" />
+  
+
+<meta name="author" content="Tao Chen; Shixue Gou" />
+
+
+<meta name="date" content="2022-12-09" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="prepare-data.html"/>
+<link rel="next" href="conclusion.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">WGS-Shiny Description Document</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#background"><i class="fa fa-check"></i><b>1.1</b> Background</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#the-development-of-sequencing-technology"><i class="fa fa-check"></i><b>1.1.1</b> The development of sequencing technology</a></li>
+<li class="chapter" data-level="1.1.2" data-path="index.html"><a href="index.html#whole-genomic-sequencing"><i class="fa fa-check"></i><b>1.1.2</b> Whole Genomic Sequencing</a></li>
+<li class="chapter" data-level="1.1.3" data-path="index.html"><a href="index.html#research-significance"><i class="fa fa-check"></i><b>1.1.3</b> Research Significance</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#how-to-start"><i class="fa fa-check"></i><b>1.2</b> How to start</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="index.html"><a href="index.html#requirement"><i class="fa fa-check"></i><b>1.2.1</b> Requirement</a></li>
+<li class="chapter" data-level="1.2.2" data-path="index.html"><a href="index.html#how-to-install-shiny-packsge"><i class="fa fa-check"></i><b>1.2.2</b> How to install shiny packsge</a></li>
+<li class="chapter" data-level="1.2.3" data-path="index.html"><a href="index.html#how-to-install-and-run-wgs-shiny-locally"><i class="fa fa-check"></i><b>1.2.3</b> How to install and run WGS-Shiny locally</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="prepare-data.html"><a href="prepare-data.html"><i class="fa fa-check"></i><b>2</b> Prepare data</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="prepare-data.html"><a href="prepare-data.html#source-of-vcf-input-data"><i class="fa fa-check"></i><b>2.1</b> Source of VCF input data</a></li>
+<li class="chapter" data-level="2.2" data-path="prepare-data.html"><a href="prepare-data.html#source-of-txt-input-data"><i class="fa fa-check"></i><b>2.2</b> Source of TXT input data</a></li>
+<li class="chapter" data-level="2.3" data-path="prepare-data.html"><a href="prepare-data.html#input-data-name-requirements"><i class="fa fa-check"></i><b>2.3</b> Input Data name requirements</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="prepare-data.html"><a href="prepare-data.html#input-file-name-requirements"><i class="fa fa-check"></i><b>2.3.1</b> Input file name requirements</a></li>
+<li class="chapter" data-level="2.3.2" data-path="prepare-data.html"><a href="prepare-data.html#input-compress-files-requirements"><i class="fa fa-check"></i><b>2.3.2</b> Input compress files requirements</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="prepare-data.html"><a href="prepare-data.html#example-data-set-in-wgs-shiny-software"><i class="fa fa-check"></i><b>2.4</b> Example data set in WGS-Shiny software</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="run-the-app.html"><a href="run-the-app.html"><i class="fa fa-check"></i><b>3</b> Run The App</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="run-the-app.html"><a href="run-the-app.html#module-1-data-input"><i class="fa fa-check"></i><b>3.1</b> Module 1: Data Input</a></li>
+<li class="chapter" data-level="3.2" data-path="run-the-app.html"><a href="run-the-app.html#module-2-variants-number"><i class="fa fa-check"></i><b>3.2</b> Module 2: Variants Number</a></li>
+<li class="chapter" data-level="3.3" data-path="run-the-app.html"><a href="run-the-app.html#module-3-snp-analysis"><i class="fa fa-check"></i><b>3.3</b> Module 3: SNP Analysis</a></li>
+<li class="chapter" data-level="3.4" data-path="run-the-app.html"><a href="run-the-app.html#module-4-indel-analysis"><i class="fa fa-check"></i><b>3.4</b> Module 4: Indel Analysis</a></li>
+<li class="chapter" data-level="3.5" data-path="run-the-app.html"><a href="run-the-app.html#module-5-venn-diagram"><i class="fa fa-check"></i><b>3.5</b> Module 5: Venn Diagram</a></li>
+<li class="chapter" data-level="3.6" data-path="run-the-app.html"><a href="run-the-app.html#module-6-circos-plot"><i class="fa fa-check"></i><b>3.6</b> Module 6: Circos Plot</a></li>
+<li class="chapter" data-level="3.7" data-path="run-the-app.html"><a href="run-the-app.html#module-7-genomic-feature"><i class="fa fa-check"></i><b>3.7</b> Module 7: Genomic Feature</a></li>
+<li class="chapter" data-level="3.8" data-path="run-the-app.html"><a href="run-the-app.html#module-8-highest-variant-genes"><i class="fa fa-check"></i><b>3.8</b> Module 8: Highest Variant Genes</a></li>
+<li class="chapter" data-level="3.9" data-path="run-the-app.html"><a href="run-the-app.html#module-9-cancer-driver-genes"><i class="fa fa-check"></i><b>3.9</b> Module 9: Cancer Driver Genes</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>4</b> Conclusion</a></li>
+<li class="chapter" data-level="5" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i><b>5</b> References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">WGS Shiny Description Document</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="run-the-app" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">Chapter 3</span> Run The App<a href="run-the-app.html#run-the-app" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div class="figure"><span style="display:block;" id="fig:unnamed-chunk-9"></span>
+<img src="figure/Main-page.png" alt="Main_Page" width="100%" />
+<p class="caption">
+Figure 3.1: Main_Page
+</p>
+</div>
+<p>In this Chapter, we will introduce step by step instruction in each module using the example built-in dataset provided at WGS-shiny. After starting the WGS-Shiny , there are a Introduction page and nine modules: (1) Data Input; (2) Variants Numbers; (3) SNP Analysis; (4) Indel Analysis; (5) Venn Diagram; (6) Circos Plot; (7) Genomic Feature; (8) Highest Variants Genes and (9) Cancer Driver Genes on the left panel of WGS-Shiny(Figure S1). For question and bug report, please leave your comment under issue section at github page. Each analysis page includes the analysis method selection module on the left with black background and the analysis module on the right with white background. Click the analysis method in the selection module to enter each analysis page.</p>
+<div id="module-1-data-input" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> Module 1: Data Input<a href="run-the-app.html#module-1-data-input" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The purpose of the “Data Input” module is for users to input their own data or use the built-in data set. The data reading module consists of three parts: the data selection part on the left, the data display part on the right and the interpretation part of the built-in data below. Add the species selection button (Figure 3.2-I) in the data selection part, load the built-in data button and read the data button (Figure 3.2-II), users can set the button according to their own data (Figure 3.2-III), and there is also a data upload button (Figure 3.2-IV). Sample selection button (Figure 3.2-V) is set in data display section, users can select samples for display.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-10"></span>
+<img src="figure/Input-page_1.png" alt="Data_Input" width="100%" />
+<p class="caption">
+Figure 3.2: Data_Input
+</p>
+</div>
+</div>
+<div id="module-2-variants-number" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> Module 2: Variants Number<a href="run-the-app.html#module-2-variants-number" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>After uploading the data input, the uploaded input will be automatically divided into SNP and Indel according to the group. The main purpose of the analysis on the second module “Variants Number” is to display the number of SNP and Indel.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-11"></span>
+<img src="figure/1.Variants_numbers_1.png" alt="Variants_number" width="100%" />
+<p class="caption">
+Figure 3.3: Variants_number
+</p>
+</div>
+<p>The analysis module mainly includes three parts. (1) The first part is the selection and setting part, including the selection of data and the setting of graph parameters. At the same time, the transmission command window of ggplot graph command is added to the additional parameters (Figure 3.3-I and Figure 3.4 A-B). (2) The second part is to display the visual results. The drop-down box of the download button is built in the upper right corner of the page, so that users can download the visual results (Figure 3.3-II and Figure 3.4-C). (3) The third part is data display. The upper right corner of this page is built to select the data button, so that users can output the data according to their own needs (Figure 3.4-III and Figure-D).</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-12"></span>
+<img src="figure/1.Variants_numbers_Support.png" alt="Variants_number_Elements" width="100%" />
+<p class="caption">
+Figure 3.4: Variants_number_Elements
+</p>
+</div>
+</div>
+<div id="module-3-snp-analysis" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> Module 3: SNP Analysis<a href="run-the-app.html#module-3-snp-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>This module is to analyze and use heatmap and bar plot to display SNP data of different groups, through which different mutation rates of each group can be clearly seen.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-13"></span>
+<img src="figure/2.SNP_Analysis_heatmap_1.png" alt="SNP_Analysis_heatmap" width="100%" />
+<p class="caption">
+Figure 3.5: SNP_Analysis_heatmap
+</p>
+</div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-14"></span>
+<img src="figure/2.SNP_Analysis_barplot_1.png" alt="SNP_Analysis_Barplot" width="100%" />
+<p class="caption">
+Figure 3.6: SNP_Analysis_Barplot
+</p>
+</div>
+<p>This module includes three parts: (1) In the first part “Set SNP Analysis Plot”, users can choose drawing methods, including heat map and bar chart. The bar chart includes two stacking methods (Figure S3.7), and users can choose interested experimental group and plotting parameters (Figure 3.5-I and Figure 3.6-I). (2) The second part “Display SNP Analysis Plot” can display the SNP data use heatmap or bar plot, and user can use download button to download plot (Figure 3.5-II and Figure 3.6-II). (3) The third part “Display SNP Analysis Data” can display the heatmap or bar plot data, and also provides the output of the data, the parameters are set the same as in model 2 (Figure 3.5-III and Figure 3.6-III).</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-15"></span>
+<img src="figure/2.SNP_Analysis_barplot_ALL_type.png" alt="SNP_Analysis_Barpolot_type" width="100%" />
+<p class="caption">
+Figure 3.7: SNP_Analysis_Barpolot_type
+</p>
+</div>
+</div>
+<div id="module-4-indel-analysis" class="section level2 hasAnchor" number="3.4">
+<h2><span class="header-section-number">3.4</span> Module 4: Indel Analysis<a href="run-the-app.html#module-4-indel-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>This module uses two mapping methods of Indel length density distribution map and Indel length heat map to display Indel data. Through this method, we can intuitively see the situation of various types of mutations in different populations.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-16"></span>
+<img src="figure/3.Indel_Analysis_density_plot_1.png" alt="Indel_Analysis_density_plot" width="100%" />
+<p class="caption">
+Figure 3.8: Indel_Analysis_density_plot
+</p>
+</div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-17"></span>
+<img src="figure/3.Indel_Analysis_heatmap_1.png" alt="Indel_Analysis_heatmap_plot" width="100%" />
+<p class="caption">
+Figure 3.9: Indel_Analysis_heatmap_plot
+</p>
+</div>
+<p>This module consists of three parts: (1) In the first part “Set Indel Analysis Plot”, users can choose drawing methods, including density plot and heatmap plot (Figure 3.8 and Figure 3.9), in which users can choose interested experimental groups and drawing parameters(Figure 3.8-I and Figure 3.9-I). (2) The second part “Display Indel Analysis Plot” can display the Indel data use density plot or heatmap, and user can use download button to download plot (Figure 3.8-II and Figure 3.9-II). (3) The third part “Display Indel Analysis Data” can display the density plot or heatmap data, and also provides the output of the data, the parameters are set the same as in model 2 (Figure 3.8-III and Figure 3.9-III).</p>
+</div>
+<div id="module-5-venn-diagram" class="section level2 hasAnchor" number="3.5">
+<h2><span class="header-section-number">3.5</span> Module 5: Venn Diagram<a href="run-the-app.html#module-5-venn-diagram" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In order to detect the duplicate data credibility of each group, users can cross-analyze the data using the Venn R package (<a href="references.html#ref12">Dusa, Adrian. 2021</a>) and present the visualized results.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-18"></span>
+<img src="figure/4.Venn_Diagram_1.png" alt="Venn_Diagram" width="100%" />
+<p class="caption">
+Figure 3.10: Venn_Diagram
+</p>
+</div>
+<p>The module consists of three parts: (1) The first part can select analysis data and setting visual parameter. Users can select SNP or Indel and interested groups for analysis, and parameters of Venn diagram can be set according to the provided button (Figure 3.10-I). (2) The second part is to visualize the cross data through Venn graph, and download the picture using the download button (Figure 3.10-II). (3) The third part “Display Venn Data” shows the cross data and can download the data through the data button, the parameters are set the same as in model 2 (Figure 3.10-III).</p>
+</div>
+<div id="module-6-circos-plot" class="section level2 hasAnchor" number="3.6">
+<h2><span class="header-section-number">3.6</span> Module 6: Circos Plot<a href="run-the-app.html#module-6-circos-plot" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In order to observe the distribution of SNP or Indel on chromosomes, the “Circos Plot” module uses the circlize R package (<a href="references.html#ref13">Gu, Z.et al. 2014</a>) to plot the selected data on a chromosomal circle plot according to the location of mutations.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-19"></span>
+<img src="figure/5.Circos_plot_1.png" alt="Circos_Plot" width="100%" />
+<p class="caption">
+Figure 3.11: Circos_Plot
+</p>
+</div>
+<p>This module consists of three parts: (1) The first part is “Set Circle Plot”, it can select analysis data and setting visual parameter. Users can select SNP or Indel data for analysis. This module sets three display elements, namely point, line and rectangle (Figure 3.11A-I), and can set the position of labels in Circos chart according to the label position button provided. In addition, there are some additional parameters for users to set (Figure 3.11A-II); (2) The second part is “Set Circle Elements Plot”, which can set the display elements, including the color and size of the elements represented by each group (Figure 3.11B); (3) The third part is “Display Circle Plot”, which mainly visualizes the data according to the parameter Settings in the previous two steps. Users can use the download button to download the visual results (Figure 3.11A-III).</p>
+</div>
+<div id="module-7-genomic-feature" class="section level2 hasAnchor" number="3.7">
+<h2><span class="header-section-number">3.7</span> Module 7: Genomic Feature<a href="run-the-app.html#module-7-genomic-feature" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In order to detect the specific position of SNP or Indel in the genome, the “Genomic Feature” module makes a statistical analysis of the annotated file according to the genome where the annotated mutation is located, and displays the results with a bar chart.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-20"></span>
+<img src="figure/6.Genomic_Feature_1.png" alt="Genomic_Feature" width="100%" />
+<p class="caption">
+Figure 3.12: Genomic_Feature
+</p>
+</div>
+<p>This module includes three parts: (1) The first part is “Set Distribution Plot”, it can select analysis data and setting visual parameter. Users can select SNP or Indel data and interested groups for analysis. The bar chart provides “stack” and “dodge” stacking modes (Figure 3.13), for users to choose by themselves. Meanwhile, additional parameter Settings are also set in this part, which users can set according to their own needs (Figure 3.12-I); (2) The second part “Display Distribution Plot” can display the distribution data use bar plot, and user can use download button to download plot (Figure 3.12-II); (3) The third part “Display Distribution Data” can display the bar plot data, and also provides the output of the data, the parameters are set the same as in model 2 (Figure 3.12-III).</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-21"></span>
+<img src="figure/6.Genomic_Feature_1.png" alt="Genomic_Feature_All_type" width="100%" />
+<p class="caption">
+Figure 3.13: Genomic_Feature_All_type
+</p>
+</div>
+</div>
+<div id="module-8-highest-variant-genes" class="section level2 hasAnchor" number="3.8">
+<h2><span class="header-section-number">3.8</span> Module 8: Highest Variant Genes<a href="run-the-app.html#module-8-highest-variant-genes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In order to visually see the situation of highest mutant genes in each sample, this “Highest Variant Genes” module makes statistics on the highest mutant genes in each sample and displays the statistical results.This module includes three parts: (1) The first part “Set Variants Genes Plot” is mainly about the selection of data and the setting of visual parameters. Users can select the type of data, the position of mutation on the genome and the sample according to their own needs, and then carry out the next analysis. Meanwhile, additional parameter Settings are also set in this part, which users can set according to their own needs (Figure 3.14-I). (2) The second part “Display Variants Genes Plot” can display the Highest mutation data use bar plot, and user can use download button to download plot (Figure 3.14-II). (3) The third part “Display Variants Genes Data” can display the bar plot data, and also provides the output of the data, the parameters are set the same as in model 2 (Figure 3.14-III).</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-22"></span>
+<img src="figure/7.Highest_Variansts_genes_1.png" alt="Highest_Variants_Genes" width="100%" />
+<p class="caption">
+Figure 3.14: Highest_Variants_Genes
+</p>
+</div>
+</div>
+<div id="module-9-cancer-driver-genes" class="section level2 hasAnchor" number="3.9">
+<h2><span class="header-section-number">3.9</span> Module 9: Cancer Driver Genes<a href="run-the-app.html#module-9-cancer-driver-genes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>After the statistics of highly mutated genes in all samples are carried out in Module 8, users can then use this module to select interested samples for heat map comparative analysis and screen out cancer driver genes.This module includes three parts: (1) The first part is mainly about the selection of data and the setting of visual parameters. Users can select the type of data, the position of mutation on the genome and the sample according to their own needs, and then carry out the next analysis. Meanwhile, additional parameter Settings are also set in this part, which users can set according to their own needs (Figure S17-I); (2) The second part can display the different samples Highest mutation data use heatmap, and user can use download button to download plot (Figure S17-II); (3) The third part can display the heatmap data, and also provides the output of the data, the parameters are set the same as in model 2 (Figure S17-III).</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-23"></span>
+<img src="figure/8.Cancer_Driver_genes_1.png" alt="Cancer_Dirver_Genes" width="100%" />
+<p class="caption">
+Figure 3.15: Cancer_Dirver_Genes
+</p>
+</div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="prepare-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="conclusion.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/02-run_The_APP.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

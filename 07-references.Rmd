@@ -1,0 +1,27 @@
+# References
+<li id = 'ref1'>A.M. Maxam, W. Gilbert. A new method for sequencing DNA Proc. Natl.Acad.Sci.USA, 74 (1977), pp. 560-564</li>
+
+<li id = 'ref2'>Sanger F, Nicklen S, Coulson AR. DNA sequencing with chain-terminating inhibitors. Proc Natl Acad Sci U S A. 1977;74(12):5463-5467. doi:10.1073/pnas.74.12.5463</li>
+
+<li id = 'ref3'>Hutchison CA 3rd. DNA sequencing: bench to bedside and beyond. Nucleic Acids Res. 2007;35(18):6227-6237. doi:10.1093/nar/gkm688</li>
+
+<li id = 'ref4'>NHGRI. The Cost of Sequencing a Human Genome. <https://www.genome.gov/about-genomics/fact-sheets/Sequencing-Human-Genome-cost></li>
+
+<li id = 'ref5'>Hu T, Chitnis N, Monos D, Dinh A. Next-generation sequencing technologies: An overview. Hum Immunol. 2021;82(11):801-811. doi:10.1016/j.humimm.2021.02.012</li>
+
+<li id = 'ref6'>Venter, J. C. (2007) A Life Decoded, 1st ed., Viking, New York.</li>
+
+<li id = 'ref7'>S. Levy, G. Sutton, P.C. Ng, L. Feuk, A.L. Halpern, B.P. Walenz, et al. The Diploid Genome Sequence of an Individual Human, PLoS Biol. 5 (2007) e254.</li>
+
+<li id = 'ref8'>Nakagawa H, Wardell CP, Furuta M, Taniguchi H, Fujimoto A. Cancer whole genome sequencing: present and future. Oncogene.
+2015;34:5943-5950.</li>
+
+<li id = 'ref9'>Nakagawa H, Fujita M. Whole genome sequencing analysis for cancer genomics and precision medicine. Cancer Sci. 2018;109(3):513-522. doi:10.1111/cas.13505</li>
+
+<li id = 'ref10'>Wang K, Li M, Hakonarson H. ANNOVAR: functional annotation of genetic variants from high-throughput sequencing data. Nucleic Acids Res. 2010;38(16):e164.</li>
+
+<li id = 'ref11'>Liang Y, Xie J, Zhang Q, et al. AGBE: a dual deaminase-mediated base editor by fusing CGBE with ABE for creating a saturated mutant population with multiple editing patterns. Nucleic Acids Res. 2022;50(9):5384-5399.</li>
+
+<li id = 'ref12'>Dusa, Adrian (2021): venn: Draw Venn Diagrams. Comprehensive R Archive Network. <https://CRAN.R-project.org/package=venn></li>
+
+<li id = 'ref13'>Gu, Z.et al. (2014) circlize implements and enhances circular visualization in R. Bioinformatics, 30, 2811–2812.</li>
