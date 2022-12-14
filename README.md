@@ -1,1 +1,1 @@
-# WGS-shiny
+# VCFshiny
