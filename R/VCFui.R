@@ -49,18 +49,18 @@ VCFui <- function() {
     '))),
       ### 读入数据 ---------------------------------------------------------------------------------------------------------
       tabItems(
-        source(system.file("shiny", "modules/Introduction.R", package = "VCFshiny"), local = T)$value,
-        source(system.file("shiny", "modules/Upload_ui.R", package = "VCFshiny"), local = T)$value,
+        source(system.file("shiny", "modules/0.Introduction.R", package = "VCFshiny"), local = T)$value,
+        source(system.file("shiny", "modules/1.Upload_ui.R", package = "VCFshiny"), local = T)$value,
         ### 第一部分 ---------------------------------------------------------------------------------------------------------------------------------------------
-        source(system.file("shiny", "modules/1-1.summarise_barplot_ui.R", package = "VCFshiny"), local = T)$value,
-        source(system.file("shiny", "modules/1-2.SNP_Analysis_ui.R", package = "VCFshiny"), local = T)$value,
-        source(system.file("shiny", "modules/1-3.Indel_Analysis_ui.R", package = "VCFshiny"), local = T)$value,
-        source(system.file("shiny", "modules/1-4.Venn_ui.R", package = "VCFshiny"), local = T)$value,
-        source(system.file("shiny", "modules/1-5.circle_ui.R", package = "VCFshiny"), local = T)$value,
+        source(system.file("shiny", "modules/2.Venn_ui.R", package = "VCFshiny"), local = T)$value,
+        source(system.file("shiny", "modules/3.summarise_barplot_ui.R", package = "VCFshiny"), local = T)$value,
+        source(system.file("shiny", "modules/4.SNP_Analysis_ui.R", package = "VCFshiny"), local = T)$value,
+        source(system.file("shiny", "modules/5.Indel_Analysis_ui.R", package = "VCFshiny"), local = T)$value,
+        source(system.file("shiny", "modules/6.circle_ui.R", package = "VCFshiny"), local = T)$value,
         ### 第二部分 ---------------------------------------------------------------------------------------------------------------------------------
-        source(system.file("shiny", "modules/2-1.Distribution_ui.R", package = "VCFshiny"), local = T)$value,
-        source(system.file("shiny", "modules/2-2.VariantsGene_Summarise_ui.R", package = "VCFshiny"), local = T)$value,
-        source(system.file("shiny", "modules/2-3.VariantsGene_Heatmap_ui.R", package = "VCFshiny"), local = T)$value
+        source(system.file("shiny", "modules/7.Distribution_ui.R", package = "VCFshiny"), local = T)$value,
+        source(system.file("shiny", "modules/8.VariantsGene_Summarise_ui.R", package = "VCFshiny"), local = T)$value,
+        source(system.file("shiny", "modules/9.VariantsGene_Heatmap_ui.R", package = "VCFshiny"), local = T)$value
       )
     )
   )

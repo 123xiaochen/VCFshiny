@@ -5,16 +5,16 @@ output$circle_group <- renderUI({
     observe(SNP_data())
     virtualSelectInput(
       inputId = "Circle_Group",  label = "Sample groups:",
-      choices = unique(gsub("-[0-9].snp$|_[0-9].snp$", "", names(SNP_data()))),
-      selected = unique(gsub("-[0-9].snp$|_[0-9].snp$", "", names(SNP_data()))),
+      choices = unique(gsub("-[0-9].snp$|_[0-9].snp$|.snp", "", names(SNP_data()))),
+      selected = unique(gsub("-[0-9].snp$|_[0-9].snp$|.snp", "", names(SNP_data()))),
       multiple = T, search = F, width = "100%"
     )
   }else {
     observe(Indel_data())
     virtualSelectInput(
       inputId = "Circle_Group",  label = "Sample groups:",
-      choices = unique(gsub("-[0-9].indel$|_[0-9].indel$","",names(Indel_data()))),
-      selected = unique(gsub("-[0-9].indel$|_[0-9].indel$","",names(Indel_data()))),
+      choices = unique(gsub("-[0-9].indel$|_[0-9].indel$|.indel","",names(Indel_data()))),
+      selected = unique(gsub("-[0-9].indel$|_[0-9].indel$|.indel","",names(Indel_data()))),
       multiple = T, search = F, width = "100%"
     )
   }
@@ -130,7 +130,7 @@ output$cirecle_PlotOutput <- renderPlot({
 #1-6.4下载图片
 output$CirclePlot_download <- downloadHandler(
   filename = function(){
-    paste(paste("1.5", input$circle_type_ID, input$circle_type, "Circle_plot", sep = "_"),"pdf" , sep = ".")
+    paste(paste("5", input$circle_type_ID, input$circle_type, "Circle_plot", sep = "_"),"pdf" , sep = ".")
   },
   content = function(file){
     pdf(file,width = input$CirclePlot_download_width, height = input$CirclePlot_download_height)

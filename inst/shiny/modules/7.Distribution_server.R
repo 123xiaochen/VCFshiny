@@ -3,8 +3,8 @@
 output$distribution_type_group <- renderUI({
   virtualSelectInput(
     inputId = "distribution_type_group",  label = "Sample groups:",
-    choices = unique(gsub("-[0-9].*$|_[0-9].*","",names(raw_variants_list()))),
-    selected = unique(gsub("-[0-9].*$|_[0-9].*","",names(raw_variants_list()))),
+    choices = unique(gsub("-[0-9].snp|_[0-9].snp|.snp|-[0-9].indel|_[0-9].indel|.indel","",names(raw_variants_list()))),
+    selected = unique(gsub("-[0-9].snp|_[0-9].snp|.snp|-[0-9].indel|_[0-9].indel|.indel","",names(raw_variants_list()))),
     multiple = T, search = F, width = "100%"
   )
 })
@@ -31,7 +31,7 @@ distribution_binded <- eventReactive(input$plot_distribution, {
     colnames(data)[colnames(data) == input$distribution_feature_column] <- "feature_column"
     number_df <- data %>% dplyr::group_by(feature_column) %>% count %>% as.data.frame()
     number_df$sample_name <- x
-    number_df$group <- gsub("-[0-9].*|_[0-9].*", "", x)
+    number_df$group <- gsub("-[0-9].snp|_[0-9].snp|.snp|-[0-9].indel|_[0-9].indel|.indel", "", x)
     number_df$percentage <- number_df$n / sum(number_df$n) * 100
     return(number_df)
   }) %>% bind_rows()
@@ -48,7 +48,7 @@ output$distribution_data <- DT::renderDataTable(
 )
 
 output$distribution_tab_download <- downloadHandler(
-  filename = function()  {paste0("distribution_tab",".csv")},
+  filename = function()  {paste0("6_distribution_tab",".csv")},
   content = function(file) {
     write.csv(distribution_binded(), file, row.names = F)
   }
@@ -102,7 +102,7 @@ output$Distribution_Plot <- renderPlot({
 #2-1.3 下载位置分布柱状图
 output$Distribution_Download <- downloadHandler(
   filename = function(){
-    paste(paste("2.1", input$distribution_type_id,"ALL_Variants_Distribution_plot", sep = "_"), "pdf",sep = ".")
+    paste(paste("6", input$distribution_type_id, input$distribution_type_position, "ALL_Variants_Distribution_plot", sep = "_"), "pdf",sep = ".")
   },
   content = function(file){
     pdf(file,width = input$Distribution_download_width,height = input$Distribution_download_height)

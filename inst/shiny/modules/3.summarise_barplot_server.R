@@ -24,7 +24,7 @@ output$information <- DT::renderDataTable(
 )
 
 output$summary_tab <- downloadHandler(
-  filename = function()  {paste0("summary_tab",".csv")},
+  filename = function()  {paste0("2_summary_tab",".csv")},
   content = function(file) {
     write.csv(sumData(), file, row.names = F)
   }
@@ -62,7 +62,7 @@ output$SummarisePlot <- renderPlot({
 })
 
 output$summarise_plot <- downloadHandler(
-  filename = "1.1_Summarise_plot.pdf",
+  filename = "2_Summarise_plot.pdf",
   content = function(file){
     pdf(file,width = input$summarise_download_width,height = input$summarise_download_height)
     print(SummarisePlot())

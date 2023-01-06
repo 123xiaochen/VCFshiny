@@ -3,7 +3,7 @@
 # 2-2.1、筛选突变基因
 output$Variants_sample_id <- renderUI({
   virtualSelectInput(
-    inputId = "Variants_sampleID",  label = "Sample groups:",
+    inputId = "Variants_sampleID",  label = "Select samples:",
     choices = unique(gsub("\\..*","",names(raw_variants_list()))),
     selected = unique(gsub("\\..*","",names(raw_variants_list()))),
     multiple = F, search = F, width = "100%"
@@ -109,7 +109,7 @@ output$Variants_df <- DT::renderDataTable(
 )
 
 output$summary_gene_tab <- downloadHandler(
-  filename = function()  {paste0("Relevant Genes",".csv")},
+  filename = function()  {paste0("7_Relevant Genes",".csv")},
   content = function(file) {
     write.csv(Variants_genes(), file, row.names = F)
   }
@@ -152,7 +152,7 @@ output$Variants_Plots <- renderPlot({
 output$Variants_genes_Download <- downloadHandler(
   req(input$Variants_Genes_download_width, input$Variants_Genes_download_height),
   filename = function(){
-    paste(paste("2.2", input$Variants_sampleID, "Variants_Genes_Summerise_plot",  sep = "_"), "pdf",  sep = ".")
+    paste(paste("7", input$Variants_sampleID,input$Variants_type_id, "Variants_Genes_Summerise_plot",  sep = "_"), "pdf",  sep = ".")
   },
   content = function(file){
     pdf(file, width = input$Variants_Genes_download_width, height = input$Variants_Genes_download_height)

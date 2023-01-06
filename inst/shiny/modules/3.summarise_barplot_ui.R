@@ -3,8 +3,8 @@ tabItem(
   fluidRow(
       box(
         title = "Set Summary Plot",width = 3,  status = "info", collapsible = T,
-        prettyRadioButtons(inputId = "Summariseplot_label",  label = "Display numbers label:", choices =  c("FALSE","TRUE"),
-                           inline = T, animation = "tada", shape = "square", bigger = T),
+        prettyRadioButtons(inputId = "Summariseplot_label",  label = "Display numbers label:", choices =  c("TRUE","FALSE"),
+                           selected = "FALSE", inline = T, animation = "tada", shape = "square", bigger = T),
         sliderInput("title_text_size","Title text size:", min = 0, max = 30, value = 18, step = 1, width = "100%"),
         sliderInput("label_text_size","Label text size:", min = 0, max = 30, value = 15, step = 1, width = "100%"),
         sliderInput("bar_width","Bar width:", min = 0, max = 1, value = 0.8, step = 0.1, width = "100%"),

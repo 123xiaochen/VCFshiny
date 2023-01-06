@@ -1,7 +1,7 @@
 #2-3、构建各组变异基因热图数据-----------------------------------------------------------------------------------------------------------------------
 output$Variants_heatmap_sampleID <- renderUI({
   virtualSelectInput(
-    inputId = "Variants_heatmap_sampleID",  label = "Sample groups:",
+    inputId = "Variants_heatmap_sampleID",  label = "Select samples:",
     choices = unique(gsub("\\..*","",names(raw_variants_list()))),
     selected = unique(gsub("\\..*","",names(raw_variants_list()))),
     multiple = T, search = F, width = "100%"
@@ -105,7 +105,7 @@ output$Variants_Heatmap_data <- DT::renderDataTable(
 )
 
 output$heatmap_gene_tab <- downloadHandler(
-  filename = function()  {paste0("Heatmap info table",".csv")},
+  filename = function()  {paste0("8_Heatmap info table",".csv")},
   content = function(file) {
     write.csv(Variants_heatmap_data(), file, row.names = F)
   }
@@ -122,8 +122,6 @@ Heat_Plot_2 <- eventReactive(input$Variants_heatmap, {
                      color = grDevices::colorRampPalette(c("GhostWhite", "red"))(50),
                      show_rownames = as.logical(input$Variants_heatmap_show_rownames),
                      show_colnames = as.logical(input$Variants_heatmap_show_colnames),
-                     treeheight_row = input$Variants_heatmap_treeheight_row,
-                     treeheight_col = input$Variants_heatmap_treeheight_col,
                      breaks = c(seq(0, input$Variants_heatmap_colorValue, input$Variants_heatmap_colorValue / 50)),
                      legend_breaks = seq(0, input$Variants_heatmap_colorValue, 2),
                      legend_labels = c(seq(0, input$Variants_heatmap_colorValue - 2, 2) %>% as.character, paste0(input$Variants_heatmap_colorValue, "+")))
@@ -138,7 +136,7 @@ output$Heatmap_plot_2 <- renderPlot({
 #2-3.3、 下载热图
 output$Variants_heatmap_Download <- downloadHandler(
   filename = function(){
-    paste(paste("2.3", input$Variants_heatmap_sampleID, input$Variants_heatmap_types, "Variants_Heatmap_Summerise_plot",  sep = "_"), "pdf", sep = ".")
+    paste(paste("8", input$Variants_heatmap_types, "Variants_Heatmap_Summerise_plot",  sep = "_"), "pdf", sep = ".")
   },
   content = function(file){
     pdf(file, width = input$Variants_heatmap_download_width, height = input$Variants_heatmap_download_height)
