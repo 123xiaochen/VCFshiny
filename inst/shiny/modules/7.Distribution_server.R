@@ -1,10 +1,9 @@
-#2-1、构建位置分布图--------------------------------------------------------------------------------------------------------------------------------------
-#######---------------------------------------------------------无法选组
+
 output$distribution_type_group <- renderUI({
   virtualSelectInput(
     inputId = "distribution_type_group",  label = "Sample groups:",
-    choices = unique(gsub("-[0-9].*$|_[0-9].*","",names(raw_variants_list()))),
-    selected = unique(gsub("-[0-9].*$|_[0-9].*","",names(raw_variants_list()))),
+    choices = unique(gsub("-[0-9].snp|_[0-9].snp|.snp|-[0-9].indel|_[0-9].indel|.indel","",names(raw_variants_list()))),
+    selected = unique(gsub("-[0-9].snp|_[0-9].snp|.snp|-[0-9].indel|_[0-9].indel|.indel","",names(raw_variants_list()))),
     multiple = T, search = F, width = "100%"
   )
 })
@@ -29,12 +28,23 @@ distribution_binded <- eventReactive(input$plot_distribution, {
   distribution_bind <- lapply(sample_ID, function(x){
     data <- raw_variants_list()[[x]]
     colnames(data)[colnames(data) == input$distribution_feature_column] <- "feature_column"
-    number_df <- data %>% dplyr::group_by(feature_column) %>% count %>% as.data.frame()
+
+    no_splite_df <- as.data.frame(data[grep(";|&", data$feature_column, invert = T), ])
+    need_splite_df <- as.data.frame(data[grep(";|&", data$feature_column), ])
+    if(nrow(need_splite_df)>0){
+      splited_df <- need_splite_df %>% tidyr::separate_rows(feature_column, sep = ";|&") %>% unique()
+      combined_df <- rbind(no_splite_df, splited_df)
+    }else{
+      combined_df <- no_splite_df
+    }
+    number_df <- combined_df %>% dplyr::group_by(feature_column) %>% dplyr::count() %>% as.data.frame()
     number_df$sample_name <- x
-    number_df$group <- gsub("-[0-9].*|_[0-9].*", "", x)
+    number_df$group <- gsub("-[0-9].snp|_[0-9].snp|.snp|-[0-9].indel|_[0-9].indel|.indel", "", x)
     number_df$percentage <- number_df$n / sum(number_df$n) * 100
+    number_df[number_df$percentage < 2, "feature_column"] <- "Other"
     return(number_df)
-  }) %>% bind_rows()
+  }) %>% dplyr::bind_rows()
+
   return(distribution_bind)
 })
 
@@ -48,7 +58,7 @@ output$distribution_data <- DT::renderDataTable(
 )
 
 output$distribution_tab_download <- downloadHandler(
-  filename = function()  {paste0("distribution_tab",".csv")},
+  filename = function()  {paste0("6_distribution_tab",".csv")},
   content = function(file) {
     write.csv(distribution_binded(), file, row.names = F)
   }
@@ -69,7 +79,6 @@ distribution_plot <- eventReactive(input$plot_distribution, {
            axis.text = element_text(color = "black", size = input$distribution_label_text_size),
            axis.title = element_text(color = "black", size = input$distribution_title_text_size),
            text = element_text(face = "bold", family = "Times", color = "black"))
-
  }else{
    p <- ggplot2::ggplot(distribution_binded, aes(x = group, y = percentage, fill = feature_column))+
      geom_bar(stat = "summary", color = NA, position = "stack")+
@@ -102,7 +111,7 @@ output$Distribution_Plot <- renderPlot({
 #2-1.3 下载位置分布柱状图
 output$Distribution_Download <- downloadHandler(
   filename = function(){
-    paste(paste("2.1", input$distribution_type_id,"ALL_Variants_Distribution_plot", sep = "_"), "pdf",sep = ".")
+    paste(paste("6", input$distribution_type_id, input$distribution_type_position, "ALL_Variants_Distribution_plot", sep = "_"), "pdf",sep = ".")
   },
   content = function(file){
     pdf(file,width = input$Distribution_download_width,height = input$Distribution_download_height)

@@ -14,9 +14,9 @@ output$Indel_analysis_group <- renderUI({
   observe(Indel_data())
   virtualSelectInput(
     inputId = "Indel_analysis_Group",  label = "Sample groups:",
-    choices = unique(gsub("-[0-9].indel$|_[0-9].indel$","",names(Indel_data()))),
-    selected = unique(gsub("-[0-9].indel$|_[0-9].indel$","",names(Indel_data()))),
-    multiple = F, search = F, width = "100%"
+    choices = unique(gsub("-[0-9].indel$|_[0-9].indel$|.indel","",names(Indel_data()))),
+    selected = unique(gsub("-[0-9].indel$|_[0-9].indel$|.indel","",names(Indel_data()))),
+    multiple = T, search = F, width = "100%"
   )
 })
 
@@ -28,7 +28,7 @@ Indel_Length_Data <- eventReactive(input$Indel_Analysis_action, {
       df$Indel_length <- nchar(df[, 5]) - nchar(df[, 4])
       df$Indel_type <- ifelse(df$Indel_length > 0, "Insertion", "Delection")
 
-      df$group <- gsub("-[0-9].indel$|_[0-9].indel$","", x)
+      df$group <- gsub("-[0-9].indel$|_[0-9].indel$|.indel","", x)
       df$samples <- x
       df
     }) %>% dplyr::bind_rows()
@@ -52,7 +52,7 @@ Indel_Length_Data <- eventReactive(input$Indel_Analysis_action, {
                                                                                                            ifelse(df$Indel_length>-50,"D 26-50bp","D >50bp")))))))))))))
       df$Indel_size <- factor(df$Indel_size, levels = c("D >50bp","D 26-50bp","D 11-25bp","D 8-10bp","D 5-7bp","D 2-4bp","D 1bp",
                                                           "I >50bp","I 26-50bp","I 11-25bp","I 8-10bp","I 5-7bp","I 2-4bp","I 1bp"))
-      df <- df %>% group_by(samples, group, Indel_size) %>% count() %>% as.data.frame()
+      df <- df %>% dplyr::group_by(samples, group, Indel_size) %>% dplyr::count() %>% as.data.frame()
       df <- lapply(df$samples, function(x){
         df <- df[df$samples == x, ]
         df$Proportion <- ((df$n) / sum(df$n)) * 100
@@ -97,7 +97,7 @@ output$Indel_Density_data <- DT::renderDataTable(
 ))
 
 output$indel_tab <- downloadHandler(
-  filename = function()  {paste0("indel_tab",".csv")},
+  filename = function()  {paste0("4_indel_tab",".csv")},
   content = function(file) {
     write.csv(Indel_Length_Data(), file, row.names = F)
   }
@@ -109,8 +109,7 @@ output$Display_Indel_plot <- renderPlot({
 
 #下载图片控件
 output$Indel_plot <- downloadHandler(
-  req(input$Indel_download_width,input$Indel_download_height),
-  filename = "1.2_Indel_Analyse_plot.pdf",
+  filename = function() {paste(paste("4_Indel_Analyse", input$Indel_Analyse_mode, sep = "_"),".pdf")},
   content = function(file){
     pdf(file, width = input$Indel_download_width, height = input$Indel_download_height)
     print(Indel_Length_plot())

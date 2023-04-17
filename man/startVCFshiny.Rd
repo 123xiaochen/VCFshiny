@@ -2,7 +2,7 @@
 % Please edit documentation in R/runApp.R
 \name{startVCFshiny}
 \alias{startVCFshiny}
-\title{Start the QRAP shiny App}
+\title{Start the VCFshiny shiny App}
 \usage{
 startVCFshiny(
   launch.browser = TRUE,
@@ -11,5 +11,5 @@ startVCFshiny(
 )
 }
 \description{
-Start the QRAP shiny App
+Start the VCFshiny shiny App
 }

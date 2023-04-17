@@ -16,8 +16,8 @@ output$snp_analyse_group <- renderUI({
   observe(SNP_data())
   virtualSelectInput(
     inputId = "SNP_Analysis_Group",  label = "Sample groups:",
-    choices = unique(gsub("-[0-9].snp$|_[0-9].snp$","",names(SNP_data()))),
-    selected = unique(gsub("-[0-9].snp$|_[0-9].snp$","",names(SNP_data()))),
+    choices = unique(gsub("-[0-9].snp$|_[0-9].snp$|.snp","",names(SNP_data()))),
+    selected = unique(gsub("-[0-9].snp$|_[0-9].snp$|.snp","",names(SNP_data()))),
     multiple = T, search = F, width = "100%"
   )
 })
@@ -124,8 +124,7 @@ output$Display_SNP_Plot <- renderPlot({
 
 
 output$SNP_plot <- downloadHandler(
-    req(input$SNP_download_width,input$SNP_download_height),
-    filename = "1.2_SNP_Analyse_plot.pdf",
+    filename = function(){ paste(paste("3_SNP_Analyse",input$SNP_Analyse_mode, sep = "_"), ".pdf")},
     content = function(file){
       pdf(file, width = input$SNP_download_width, height = input$SNP_download_height)
       print(SNP_Analysis_plot())
@@ -144,7 +143,7 @@ output$snp_analysis_data <- DT::renderDataTable(
 ))
 
 output$snp_tab <- downloadHandler(
-  filename = function()  {paste0("snp_tab",".csv")},
+  filename = function()  {paste0("3_snp_tab",".csv")},
   content = function(file) {
     write.csv(SNP_Analysis_data(), file, row.names = F)
   }

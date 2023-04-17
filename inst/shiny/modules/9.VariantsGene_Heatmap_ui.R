@@ -3,7 +3,8 @@ tabItem(
   fluidRow(
     box(
       title = "Set Variants Genes Heatmap Plot", width = 3, status = "info", collapsible = T,
-      prettyRadioButtons(inputId = "Variants_heatmap_types", label = "Select Heatmap Data Types:", choices = c("all", "snp", "indel"), inline = T,
+      prettyRadioButtons(inputId = "Variants_heatmap_types", label = "Select Heatmap Data Types:",
+                         choices = c("all", "snp", "indel"), inline = T,
                          animation = "tada", shape = "square", bigger = T),
       uiOutput("Variants_heatmap_sampleID"),
       uiOutput("Variants_heatmap_feature_column"),
@@ -14,7 +15,7 @@ tabItem(
                    style = "background-color: rgb(255,255,255);text-align:left;margin-top:15px; margin-bottom:8px",
                    icon = icon(lib ="glyphicon" ,"glyphicon glyphicon-cog")),
       actionButton("Variants_heatmap", "Variants Genes Heatmap",
-                   style = "background-color: #76a5af; border-radius: 28px;", icon = icon("bar-chart-o"), width = "100%")
+                   style = "background-color: #76a5af; border-radius: 28px;",  width = "100%")
     ),
     bsModal(
       "variants_heatmap_module", "Set Additional Parameters", "variants_heatmap_module_id", size = "small",
@@ -23,9 +24,7 @@ tabItem(
         radioGroupButtons("Variants_heatmap_show_rownames", "Show Rownames", choices = c("TRUE", "FALSE"),
                           selected = "FALSE", justified = T, checkIcon = list(yes = icon("ok", lib = "glyphicon")), width = "100%"),
         radioGroupButtons("Variants_heatmap_show_colnames", "Show Colnames", choices = c("TRUE", "FALSE"),
-                          selected = "FALSE", justified = T, checkIcon = list(yes = icon("ok", lib = "glyphicon")), width = "100%"),
-        sliderInput("Variants_heatmap_treeheight_row", "Treeheight Row", min = 0, max = 50, value = 20, step = 1, width = "100%"),
-        sliderInput("Variants_heatmap_treeheight_col", "Treeheight Col", min = 0, max = 50, value = 20, step = 1, width = "100%")
+                          selected = "TRUE", justified = T, checkIcon = list(yes = icon("ok", lib = "glyphicon")), width = "100%"),
       )
     ),
     box(

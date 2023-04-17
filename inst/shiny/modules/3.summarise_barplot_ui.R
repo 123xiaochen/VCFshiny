@@ -3,8 +3,8 @@ tabItem(
   fluidRow(
       box(
         title = "Set Summary Plot",width = 3,  status = "info", collapsible = T,
-        prettyRadioButtons(inputId = "Summariseplot_label",  label = "Display numbers label:", choices =  c("FALSE","TRUE"),
-                           inline = T, animation = "tada", shape = "square", bigger = T),
+        prettyRadioButtons(inputId = "Summariseplot_label",  label = "Display numbers label:", choices =  c("TRUE","FALSE"),
+                           selected = "FALSE", inline = T, animation = "tada", shape = "square", bigger = T),
         sliderInput("title_text_size","Title text size:", min = 0, max = 30, value = 18, step = 1, width = "100%"),
         sliderInput("label_text_size","Label text size:", min = 0, max = 30, value = 15, step = 1, width = "100%"),
         sliderInput("bar_width","Bar width:", min = 0, max = 1, value = 0.8, step = 0.1, width = "100%"),
@@ -12,7 +12,7 @@ tabItem(
                      style = "background-color: rgb(255,255,255);text-align:left;margin-top:15px; margin-bottom:8px",
                      icon = icon(lib ="glyphicon" ,"glyphicon glyphicon-cog")),
         actionButton("summarise_plot","SNP+Indel ALL Variants Plot",
-                     style = "background-color: #76a5af; border-radius: 28px;", icon = icon("bar-chart-o"), width = "100%")
+                     style = "background-color: #76a5af; border-radius: 28px;",  width = "100%")
       ),
       #设置bsModal控件
       bsModal(
