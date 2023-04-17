@@ -5,14 +5,14 @@ raw_variants_list <- eventReactive(input$sample_data, {
   withProgress(message = "processing", min = 0, max = 1, {
     cat(">> preparing data upload ... \t\t", format(Sys.time(), "%Y-%m-%d %X"), "\n")
     req(input$use_example, input$sample_data)
-    if(file.exists(stringr::str_remove(string = input$input_file$name, pattern = ".gz|.zip|.tar.gz"))){
-      unlink(stringr::str_remove(string = input$input_file$name, pattern = ".gz|.zip|.tar.gz"), unlink = T)
-    }
     if (input$use_example == "TRUE") {
       vcf_example <- readRDS(system.file("extdata", "example_data.rds", package = "VCFshiny"))
       return(vcf_example)
     }else if(input$use_example == "FALSE"){
       req(input$input_file, input$sample_data)
+      if(file.exists(stringr::str_remove(string = input$input_file$name, pattern = ".gz|.zip|.tar.gz"))){
+      unlink(stringr::str_remove(string = input$input_file$name, pattern = ".gz|.zip|.tar.gz"), unlink = T)
+      }
       if(stringr::str_detect(input$input_file$name, pattern = "gz$")){
         utils::untar(input$input_file$datapath, exdir = ".")
       }else if(stringr::str_detect(input$input_file$name, pattern = "zip$")){
