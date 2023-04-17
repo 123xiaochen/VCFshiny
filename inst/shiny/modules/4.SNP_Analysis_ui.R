@@ -22,7 +22,7 @@ tabItem(
       actionButton("snp_modal_but", "Additional Parameters ...", width = "100%",
                    style = "background-color: rgb(255,255,255);text-align:left; margin-top:15px; margin-bottom:8px",
                    icon = icon(lib ="glyphicon" ,"glyphicon glyphicon-cog")),
-      actionButton("SNP_Analysis_action", "SNP Analysis Plot", icon = icon("bar-chart-o"), width = "100%",
+      actionButton("SNP_Analysis_action", "SNP Analysis Plot",  width = "100%",
                     style = "background-color: #76a5af; border-radius: 28px;"),
     ),
     bsModal(

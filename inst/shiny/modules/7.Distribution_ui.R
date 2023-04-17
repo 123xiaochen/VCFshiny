@@ -15,7 +15,7 @@ tabItem(
                    style = "background-color: rgb(255,255,255);text-align:left;margin-top:15px; margin-bottom:8px",
                    icon = icon(lib ="glyphicon" ,"glyphicon glyphicon-cog")),
       actionButton("plot_distribution", "Variants Distribution Plot",
-                   style = "background-color: #76a5af; border-radius: 28px;", icon = icon("bar-chart-o"), width = "100%")
+                   style = "background-color: #76a5af; border-radius: 28px;",  width = "100%")
     ),
     bsModal(
       "distribution_module", "Set Basics Elements", "distribution_module_id", size = "small",

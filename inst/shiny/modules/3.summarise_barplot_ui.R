@@ -12,7 +12,7 @@ tabItem(
                      style = "background-color: rgb(255,255,255);text-align:left;margin-top:15px; margin-bottom:8px",
                      icon = icon(lib ="glyphicon" ,"glyphicon glyphicon-cog")),
         actionButton("summarise_plot","SNP+Indel ALL Variants Plot",
-                     style = "background-color: #76a5af; border-radius: 28px;", icon = icon("bar-chart-o"), width = "100%")
+                     style = "background-color: #76a5af; border-radius: 28px;",  width = "100%")
       ),
       #设置bsModal控件
       bsModal(

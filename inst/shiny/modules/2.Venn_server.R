@@ -5,7 +5,8 @@
 venn_data_list <- reactive({
   venn_data_list <- lapply(raw_variants_list(),function(x){
     raw_variants_list <- x
-    rownames(raw_variants_list) <- paste(raw_variants_list[, 1], raw_variants_list[, 2], raw_variants_list[, 3], raw_variants_list[, 4], raw_variants_list[, 5], sep = "_")
+    raw_variants_list$name <- paste(raw_variants_list[, 1], raw_variants_list[, 2], raw_variants_list[, 3], raw_variants_list[, 4],
+                                    raw_variants_list[, 5],  sep = "_")
     raw_variants_list
   })
   return(venn_data_list)
@@ -30,7 +31,7 @@ vennPlot_data <- eventReactive(input$venn_star,{
                                  pattern = input$venn_group_ID, negate = F) %>%
     stringr::str_subset(pattern = input$venn_type_id, negate = F)
   venn_list <- lapply(samples, function(x){
-    venn_data_list[[x]] %>% row.names()
+    venn_data_list[[x]][,"name"] %>% unique()
   })
   names(venn_list) <- samples
   return(venn_list)
@@ -83,6 +84,7 @@ output$venn_Table <- DT::renderDataTable(
     pageLength = 5
   )
 )
+
 
 output$venn_tab_download <- downloadHandler(
   filename = function()  {paste0("1_venn_tab",".csv")},

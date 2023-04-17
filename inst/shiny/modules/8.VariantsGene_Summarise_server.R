@@ -27,29 +27,27 @@ output$Variants_gene_column <- renderUI({
 })
 
 output$Variants_bar_position_id <- renderUI({
-  req(raw_variants_list(), input$Variants_sampleID)
   if (input$Variants_type_id == "all") {
-    simplifed_df1 <- raw_variants_list()[[paste0(input$Variants_sampleID, ".indel")]]
-    colnames(simplifed_df1)[colnames(simplifed_df1) == input$variants_feature_column] <- "feature_column"
-    colnames(simplifed_df1)[colnames(simplifed_df1) == input$variants_gene_column] <- "gene_column"
-    simplifed_df1 <- simplifed_df1 %>% group_by(feature_column, gene_column) %>% count()
-
-    simplifed_df2 <- raw_variants_list()[[paste0(input$Variants_sampleID, ".snp")]]
-    colnames(simplifed_df2)[colnames(simplifed_df2) == input$variants_feature_column] <- "feature_column"
-    colnames(simplifed_df2)[colnames(simplifed_df2) == input$variants_gene_column] <- "gene_column"
-    simplifed_df2 <- simplifed_df2 %>% group_by(feature_column, gene_column) %>% count()
-
+    simplifed_df1 <- raw_variants_list()[[paste0(input$Variants_sampleID, ".indel")]] %>% dplyr::bind_rows()
+    simplifed_df2 <- raw_variants_list()[[paste0(input$Variants_sampleID, ".snp")]] %>% dplyr::bind_rows()
     simplifed_df <- rbind(simplifed_df1, simplifed_df2)
+    colnames(simplifed_df)[colnames(simplifed_df) == input$variants_feature_column] <- "feature_column"
   }else {
     simplifed_df <- raw_variants_list()[[paste0(input$Variants_sampleID, ".", input$Variants_type_id)]]
     colnames(simplifed_df)[colnames(simplifed_df) == input$variants_feature_column] <- "feature_column"
-    colnames(simplifed_df)[colnames(simplifed_df) == input$variants_gene_column] <- "gene_column"
-    simplifed_df <- simplifed_df %>% group_by(feature_column, gene_column) %>% count()
+  }
+  no_splite_df <- as.data.frame(simplifed_df[grep(";|&", simplifed_df$feature_column, invert = T), ])
+  need_splite_df <- as.data.frame(simplifed_df[grep(";|&", simplifed_df$feature_column), ])
+  if(nrow(need_splite_df) > 0){
+    splited_df <- need_splite_df %>% tidyr::separate_rows(feature_column, sep = ";|&") %>% unique()
+    combined_df <- rbind(splited_df, no_splite_df)
+  }else{
+    combined_df <- no_splite_df
   }
 
   virtualSelectInput(
     inputId = "Variants_bar_position_ID",  label = "Select Position To Analyse:",
-    choices = unique(simplifed_df$feature_column),  selected = unique(simplifed_df$feature_column), multiple = T, zIndex = 4, search = F, width = "100%"
+    choices = unique(combined_df$feature_column),  selected = unique(combined_df$feature_column), multiple = T, zIndex = 4, search = F, width = "100%"
   )
 })
 
@@ -57,45 +55,34 @@ Variants_genes <- eventReactive(input$plot_Variants_genes, {
   raw_variants_list <- raw_variants_list()
 
   if (input$Variants_type_id == "all") {
-    simplifed_df1 <- raw_variants_list()[[paste0(input$Variants_sampleID, ".indel")]]
-    colnames(simplifed_df1)[colnames(simplifed_df1) == input$variants_feature_column] <- "feature_column"
-    colnames(simplifed_df1)[colnames(simplifed_df1) == input$variants_gene_column] <- "gene_column"
-    simplifed_df1 <- simplifed_df1 %>% group_by(feature_column, gene_column) %>% count()
-
-    simplifed_df2 <- raw_variants_list()[[paste0(input$Variants_sampleID, ".snp")]]
-    colnames(simplifed_df2)[colnames(simplifed_df2) == input$variants_feature_column] <- "feature_column"
-    colnames(simplifed_df2)[colnames(simplifed_df2) == input$variants_gene_column] <- "gene_column"
-    simplifed_df2 <- simplifed_df2 %>% group_by(feature_column, gene_column) %>% count()
-
+    simplifed_df1 <- raw_variants_list()[[paste0(input$Variants_sampleID, ".indel")]] %>% dplyr::bind_rows()
+    simplifed_df2 <- raw_variants_list()[[paste0(input$Variants_sampleID, ".snp")]] %>% dplyr::bind_rows()
     simplifed_df <- rbind(simplifed_df1, simplifed_df2)
-  }else {
-    simplifed_df <- raw_variants_list()[[paste0(input$Variants_sampleID, ".", input$Variants_type_id)]]
     colnames(simplifed_df)[colnames(simplifed_df) == input$variants_feature_column] <- "feature_column"
     colnames(simplifed_df)[colnames(simplifed_df) == input$variants_gene_column] <- "gene_column"
-    simplifed_df <- simplifed_df %>% group_by(feature_column, gene_column) %>% count()
+  }else {
+    simplifed_df <- raw_variants_list()[[paste0(input$Variants_sampleID, ".", input$Variants_type_id)]] %>% dplyr::bind_rows()
+    colnames(simplifed_df)[colnames(simplifed_df) == input$variants_feature_column] <- "feature_column"
+    colnames(simplifed_df)[colnames(simplifed_df) == input$variants_gene_column] <- "gene_column"
   }
 
-  simplifed_df <- simplifed_df[simplifed_df$feature_column %in% input$Variants_bar_position_ID, ]
+  need_splite_df <- as.data.frame(simplifed_df[(grepl(";", simplifed_df$gene_column) | grepl(";|&", simplifed_df$feature_column)),])
+  no_splite_df <- as.data.frame(simplifed_df[!(grepl(";", simplifed_df$gene_column) | grepl(";|&", simplifed_df$feature_column)) ,])
 
-  no_splite_df <- as.data.frame(simplifed_df[grep(";", simplifed_df$gene_column, invert = T), ])
-
-  if(";" %in% simplifed_df$gene_column){
-    need_splite_df <- simplifed_df[grep(";", simplifed_df$gene_column), ]
-    splited_df <- lapply(1:nrow(need_splite_df), function(x){
-      df <- data.frame(feature_column = need_splite_df[x, "feature_column"],
-                       gene_column = stringr::str_split(need_splite_df[x, "gene_column"], ";") %>% unlist,
-                       n = need_splite_df[x, "n"])
-    }) %>% bind_rows()
-    combined_df <- rbind(no_splite_df, splited_df)
+  if(nrow(need_splite_df) > 0){
+    splited_df <- need_splite_df %>% tidyr::separate_rows(feature_column, sep = ";|&") %>%
+      tidyr::separate_rows(gene_column, sep = ";") %>% unique()
+    combined_df <- rbind(splited_df, no_splite_df)
   }else{
-    combined_df <- no_splite_df
+      combined_df <- no_splite_df
   }
-
+  combined_df <- combined_df %>% dplyr::group_by(feature_column, gene_column) %>% dplyr::count()
+  combined_df <- combined_df[combined_df$feature_column %in% input$Variants_bar_position_ID, ]
   colnames(combined_df) <- c("Position", "Genes", "Numbers")
   combined_df <- combined_df[combined_df$Genes !=  "NONE", ]
-
-  df <- combined_df %>% group_by(Position, Genes) %>% summarise_at(.vars = "Numbers", sum)
-
+  combined_df <- combined_df[combined_df$Genes !=  "", ]
+  df <- combined_df %>% dplyr::group_by(Position, Genes) %>% summarise_at(.vars = "Numbers", sum)
+  df <- df[order(df$Numbers, decreasing = T), ]
   return(df)
 })
 
@@ -121,7 +108,8 @@ Variants_plot <- eventReactive(input$plot_Variants_genes, {
   withProgress(message = "processing", min = 0, max = 1, {
   incProgress(0.4, detail = "Analyse Data ...")
   Variants_df <- Variants_genes() %>% group_by(Genes) %>% summarise_at(.vars = "Numbers", sum)
-  Variants_genes <- Variants_df[order(Variants_df$Numbers, decreasing = T), ][1:input$Variants_genes_numbers ,]
+  Variants_df <- Variants_df[Variants_df$Genes != "",]
+  Variants_genes <- Variants_df[order(Variants_df$Numbers, decreasing = T), ][1:input$Variants_genes_numbers, ]
   incProgress(0.6, detail = "Analyse Data...")
   p <- ggpubr::ggbarplot(Variants_genes, x = "Genes", y = "Numbers", label = as.logical(input$Variants_genes_label),
                     width = input$Variants_genes_bar_width, position = position_dodge(),

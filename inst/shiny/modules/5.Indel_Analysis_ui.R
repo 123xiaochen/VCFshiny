@@ -20,7 +20,7 @@ tabItem(
         sliderInput("Indel_heatmap_digits", "Snp Heatmap Significant Digits:", min = 0, max = 5, value = 2, width = "100%")
       ),
       actionButton("Indel_Analysis_action","SNP ALL Variants Type Plot",
-                   style = "background-color: #76a5af; border-radius: 28px;margin-top: 14px", icon = icon("bar-chart-o"), width = "100%")
+                   style = "background-color: #76a5af; border-radius: 28px;margin-top: 14px",  width = "100%")
     ),
     box(
       title = "Display Indel Analysis Plot", width = 9,  status = "primary", collapsible = T,

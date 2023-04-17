@@ -3,7 +3,8 @@ tabItem(
   fluidRow(
     box(
       title = "Set Variants Genes Heatmap Plot", width = 3, status = "info", collapsible = T,
-      prettyRadioButtons(inputId = "Variants_heatmap_types", label = "Select Heatmap Data Types:", choices = c("all", "snp", "indel"), inline = T,
+      prettyRadioButtons(inputId = "Variants_heatmap_types", label = "Select Heatmap Data Types:",
+                         choices = c("all", "snp", "indel"), inline = T,
                          animation = "tada", shape = "square", bigger = T),
       uiOutput("Variants_heatmap_sampleID"),
       uiOutput("Variants_heatmap_feature_column"),
@@ -14,7 +15,7 @@ tabItem(
                    style = "background-color: rgb(255,255,255);text-align:left;margin-top:15px; margin-bottom:8px",
                    icon = icon(lib ="glyphicon" ,"glyphicon glyphicon-cog")),
       actionButton("Variants_heatmap", "Variants Genes Heatmap",
-                   style = "background-color: #76a5af; border-radius: 28px;", icon = icon("bar-chart-o"), width = "100%")
+                   style = "background-color: #76a5af; border-radius: 28px;",  width = "100%")
     ),
     bsModal(
       "variants_heatmap_module", "Set Additional Parameters", "variants_heatmap_module_id", size = "small",

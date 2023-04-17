@@ -16,6 +16,7 @@ VCFui <- function() {
   require(shinydashboard)
 
 
+
   dashboardPage(
     # skin = "black",
     #Header -------------------------------------------------------------------------------------------------------------------------------
@@ -33,7 +34,8 @@ VCFui <- function() {
         menuItem("Genome Circos Plot", icon = icon("chart-bar"), tabName = "circle"),
         menuItem("Genomic Features",icon = icon("chart-bar"), tabName = "distribution"),
         menuItem("Variants Relevant Genes", icon = icon("chart-bar"), tabName = "Variants_summarise"),
-        menuItem("Cancer Driver Genes", icon = icon("chart-bar"), tabName = "Variants_heatmap")
+        menuItem("Cancer Driver Genes", icon = icon("chart-bar"), tabName = "Variants_heatmap"),
+        menuItem("Data Annotation", icon = icon("book"), tabName = "dataAnno")
       )
     ),
 
@@ -57,10 +59,11 @@ VCFui <- function() {
         source(system.file("shiny", "modules/4.SNP_Analysis_ui.R", package = "VCFshiny"), local = T)$value,
         source(system.file("shiny", "modules/5.Indel_Analysis_ui.R", package = "VCFshiny"), local = T)$value,
         source(system.file("shiny", "modules/6.circle_ui.R", package = "VCFshiny"), local = T)$value,
-        ### 第二部分 ---------------------------------------------------------------------------------------------------------------------------------
+        ### 第二部分 --------------------------------------------------------------------------------------------------------------------------------
         source(system.file("shiny", "modules/7.Distribution_ui.R", package = "VCFshiny"), local = T)$value,
         source(system.file("shiny", "modules/8.VariantsGene_Summarise_ui.R", package = "VCFshiny"), local = T)$value,
-        source(system.file("shiny", "modules/9.VariantsGene_Heatmap_ui.R", package = "VCFshiny"), local = T)$value
+        source(system.file("shiny", "modules/9.VariantsGene_Heatmap_ui.R", package = "VCFshiny"), local = T)$value,
+        source(system.file("shiny", "modules/10.Annotation_ui.R", package = "VCFshiny"), local = T)$value
       )
     )
   )

@@ -52,7 +52,7 @@ Indel_Length_Data <- eventReactive(input$Indel_Analysis_action, {
                                                                                                            ifelse(df$Indel_length>-50,"D 26-50bp","D >50bp")))))))))))))
       df$Indel_size <- factor(df$Indel_size, levels = c("D >50bp","D 26-50bp","D 11-25bp","D 8-10bp","D 5-7bp","D 2-4bp","D 1bp",
                                                           "I >50bp","I 26-50bp","I 11-25bp","I 8-10bp","I 5-7bp","I 2-4bp","I 1bp"))
-      df <- df %>% group_by(samples, group, Indel_size) %>% count() %>% as.data.frame()
+      df <- df %>% dplyr::group_by(samples, group, Indel_size) %>% dplyr::count() %>% as.data.frame()
       df <- lapply(df$samples, function(x){
         df <- df[df$samples == x, ]
         df$Proportion <- ((df$n) / sum(df$n)) * 100

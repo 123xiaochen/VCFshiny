@@ -13,7 +13,7 @@ tabItem(
                    style = "background-color: rgb(255,255,255);text-align:left;margin-top:15px; margin-bottom:8px",
                    icon = icon(lib ="glyphicon" ,"glyphicon glyphicon-cog")),
       actionButton("plot_Variants_genes", "Plot Variants Genes",
-                   style = "background-color: #76a5af; border-radius: 28px;", icon = icon("bar-chart-o"), width = "100%")
+                   style = "background-color: #76a5af; border-radius: 28px;",  width = "100%")
     ),
     bsModal(
       "variants_modules", "Set Additional Parameters", "variants_modules_id", size = "small",
