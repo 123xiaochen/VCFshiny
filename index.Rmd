@@ -1,5 +1,5 @@
 --- 
-title: "WGS Shiny Description Document"
+title: "VCFShiny Description Document"
 author: "Tao Chen; Shixue Gou"
 
 date: "`r Sys.Date()`"
@@ -8,14 +8,14 @@ documentclass: book
 bibliography: [book.bib, packages.bib]
 # url: your book url like https://bookdown.org/yihui/bookdown
 # cover-image: path to the social sharing image like images/cover.jpg
-description: "WGS-shiny software Usage Instructions"
+description: "VCFshiny software Usage Instructions"
 link-citations: yes
 github-repo: rstudio/bookdown-demo
 ---
 
 # Introduction
 
-**WGS-Shiny** is a R shiny application that can be easily launched from a local web browser to analyze *whole-genome sequencing* data after variant calling for scientists without programming expertise.
+**VCFshiny** is an R shiny application that can be easily launched from a local web browser to annotate and analyze mutated sequence mutation data for scientists without programming expertise.
 
 ## Background
 
@@ -58,7 +58,7 @@ Data analysis of whole genome sequencing requires a bioinformatics background an
 
 ## How to start
 
-In this tutorial, we will go through the installation and usage of each module step by step using the example dataset we provided at *github:* <https://github.com/123xiaochen/WGS-shiny>.
+In this tutorial, we will go through the installation and usage of each module step by step using the example dataset we provided at *github:* <https://github.com/123xiaochen/VCFshiny>.
 
 ### Requirement
 1. R (>= 4.2.0)
@@ -72,17 +72,26 @@ In this tutorial, we will go through the installation and usage of each module s
 install.package("shiny")
 ```
 
-### How to install and run WGS-Shiny locally
+### How to install and run VCFshiny
 
 1. Open *R*.
-2. Run WGS-Shiny by the following commands in R:
+2. Install and run VCFshiny by the following commands in R:
 
 ```{r, eval=FALSE}
-shiny::runApp('inst/shiny')
+#Install VCFshiny
+install.packages("devtools")
+library(devtools)
+devtools::install_github("123xiaochen/VCFshiny")
+#Run VCFshiny
+library(shiny)
+library(VCFshiny)
+VCFshiny::startVCFshiny()
 ```
 
-The first model of WGS-Shiny setting page will pop-up.
+3. Run VCFshiny:
 
 ```{r echo = F, fig.cap = "File-Format", out.width="100%",fig.align='center'}
-knitr::include_graphics("figure/Main-page.png")
+knitr::include_graphics("figure/1.main_page1.png")
 ```
+
+The first model of VCFshiny setting page will pop-up (Figure 1.4).

@@ -1,5 +1,4 @@
 # Conclusion
 
-WGS-shiny offers an easy-to-use framework for variant statistical analyses of mutation from genomes-wide data obtained from genomics sequencing. WGS-shiny can perform mutation statistical analysis for a variety of species, and users can analyze different data by selecting the species provided. Through the analytical testing of the test data, we believe that WGS-shiny can be a very useful tool in the field of whole gene analysis.
-
+**VCFshiny** provides an easy-to-use framework for annotating and statistical analysis of VCF(variant call format) variant data after high-throughput sequencing analysis. VCFshiny can analyze a variety of data types from multiple perspectives, and provide annotation and a variety of analysis and visualization methods for variable data. By analyzing and testing test data, we believe that VCFshiny can be a very useful tool in the field of variation analysis.
 
