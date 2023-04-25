@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 5 References | VCFShiny Description Document</title>
+  <title>2 Prepare data | VCFShiny Description Document</title>
   <meta name="description" content="VCFshiny software Usage Instructions" />
   <meta name="generator" content="bookdown 0.33 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 5 References | VCFShiny Description Document" />
+  <meta property="og:title" content="2 Prepare data | VCFShiny Description Document" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="VCFshiny software Usage Instructions" />
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 5 References | VCFShiny Description Document" />
+  <meta name="twitter:title" content="2 Prepare data | VCFShiny Description Document" />
   
   <meta name="twitter:description" content="VCFshiny software Usage Instructions" />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="conclusion.html"/>
-
+<link rel="prev" href="index.html"/>
+<link rel="next" href="run-the-app.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -206,60 +206,62 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="references" class="section level1 hasAnchor" number="5">
-<h1><span class="header-section-number">Chapter 5</span> References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<li id="ref1">
-A.M. Maxam, W. Gilbert. A new method for sequencing DNA Proc. Natl.Acad.Sci.USA, 74 (1977), pp. 560-564
-</li>
-<li id="ref2">
-Sanger F, Nicklen S, Coulson AR. DNA sequencing with chain-terminating inhibitors. Proc Natl Acad Sci U S A. 1977;74(12):5463-5467. <a href="doi:10.1073/pnas.74.12.5463" class="uri">doi:10.1073/pnas.74.12.5463</a>
-</li>
-<li id="ref3">
-Hutchison CA 3rd. DNA sequencing: bench to bedside and beyond. Nucleic Acids Res. 2007;35(18):6227-6237. <a href="doi:10.1093/nar/gkm688" class="uri">doi:10.1093/nar/gkm688</a>
-</li>
-<li id="ref4">
-NHGRI. The Cost of Sequencing a Human Genome. <a href="https://www.genome.gov/about-genomics/fact-sheets/Sequencing-Human-Genome-cost" class="uri">https://www.genome.gov/about-genomics/fact-sheets/Sequencing-Human-Genome-cost</a>
-</li>
-<li id="ref5">
-Hu T, Chitnis N, Monos D, Dinh A. Next-generation sequencing technologies: An overview. Hum Immunol. 2021;82(11):801-811. <a href="doi:10.1016/j.humimm.2021.02.012" class="uri">doi:10.1016/j.humimm.2021.02.012</a>
-</li>
-<li id="ref6">
-Venter, J. C. (2007) A Life Decoded, 1st ed., Viking, New York.
-</li>
-<li id="ref7">
-S. Levy, G. Sutton, P.C. Ng, L. Feuk, A.L. Halpern, B.P. Walenz, et al. The Diploid Genome Sequence of an Individual Human, PLoS Biol. 5 (2007) e254.
-</li>
-<li id="ref8">
-Nakagawa H, Wardell CP, Furuta M, Taniguchi H, Fujimoto A. Cancer whole genome sequencing: present and future. Oncogene.
-2015;34:5943-5950.
-</li>
-<li id="ref9">
-Nakagawa H, Fujita M. Whole genome sequencing analysis for cancer genomics and precision medicine. Cancer Sci. 2018;109(3):513-522. <a href="doi:10.1111/cas.13505" class="uri">doi:10.1111/cas.13505</a>
-</li>
-<li id="ref10">
-Wang K, Li M, Hakonarson H. ANNOVAR: functional annotation of genetic variants from high-throughput sequencing data. Nucleic Acids Res. 2010;38(16):e164.
-</li>
-<li id="ref11">
-Obenchain, V., et al., VariantAnnotation: a Bioconductor package for exploration and annotation of genetic variants. Bioinformatics, 2014. 30(14): p. 2076-8.
-</li>
-<li id="ref12">
-Liang Y, Xie J, Zhang Q, et al. AGBE: a dual deaminase-mediated base editor by fusing CGBE with ABE for creating a saturated mutant population with multiple editing patterns. Nucleic Acids Res. 2022;50(9):5384-5399.
-</li>
-<li id="ref13">
-Dusa, Adrian (2021): venn: Draw Venn Diagrams. Comprehensive R Archive Network. <a href="https://CRAN.R-project.org/package=venn" class="uri">https://CRAN.R-project.org/package=venn</a>
-</li>
-<li id="ref14">
-Gu, Z.et al. (2014) circlize implements and enhances circular visualization in R. Bioinformatics, 30, 2811–2812.
-</li>
+<div id="prepare-data" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">2</span> Prepare data<a href="prepare-data.html#prepare-data" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>In this chapter, we describe how to prepare two different input datasets, where the annotation part of VCFshiny can only input unannotated VCF files, and the analysis part of VCFshiny can read annotated VCF and TXT files.</p>
+<div id="source-of-vcf-input-data" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> Source of VCF input data<a href="prepare-data.html#source-of-vcf-input-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The Variant Call Format (VCF) is used to record gene sequence variations. It is also the first file format to be understood for genome population correlation analysis. The file is divided into two main parts: the Header comment section, which begins with <em>#</em>, and the body section.</p>
+</div>
+<div id="source-of-txt-input-data" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> Source of TXT input data<a href="prepare-data.html#source-of-txt-input-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>TXT file is one of the standard storage formats after mutation data annotation. Because some users cannot annotate the steps, We provide Annovar (<a href="references.html#ref10">Wang K, Li M, Hakonarson H. 2010</a>) and VariantAnnotation (<a href="reference.html#11">Obenchain, V., et al. 2014</a>) two methods of annotation in the VCFshiny, Users can choose to annotate themselves or use the tool.</p>
+</div>
+<div id="input-data-name-requirements" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> Input Data name requirements<a href="prepare-data.html#input-data-name-requirements" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="input-file-name-requirements" class="section level3 hasAnchor" number="2.3.1">
+<h3><span class="header-section-number">2.3.1</span> Input file name requirements<a href="prepare-data.html#input-file-name-requirements" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-7"></span>
+<img src="figure/Input_File_Format.png" alt="File-Format" width="80%" />
+<p class="caption">
+Figure 2.1: File-Format
+</p>
+</div>
+<ol style="list-style-type: decimal">
+<li>The first box represents the sample name, which can be the group of experiments and the number of repetitions, connected by the character <em>“-”</em> or *“_“*.</li>
+<li>The second box represents the data type, which can be snp or indel data. When snp and indel are not classified in the data, <strong>this box is not necessary</strong>.</li>
+<li>The third box represents the data format, which can be vcf files, vcf. gz compressed files, and <em>Annovar</em> annotated TXT files.</li>
+<li>The contents of the three boxes are connected by <em>“.”</em>.</li>
+</ol>
+</div>
+<div id="input-compress-files-requirements" class="section level3 hasAnchor" number="2.3.2">
+<h3><span class="header-section-number">2.3.2</span> Input compress files requirements<a href="prepare-data.html#input-compress-files-requirements" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Before uploading the data to VCFshiny, that needs to be compressed. The following are the naming requirements for the compressed folder.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-8"></span>
+<img src="figure/Fold_Format.png" alt="Fold_Format" width="80%" />
+<p class="caption">
+Figure 2.2: Fold_Format
+</p>
+</div>
+<ol style="list-style-type: decimal">
+<li>The compressed file name must be the same as the name of the compressed folder.</li>
+<li>The compressed file can be in <code>*.tar.gz</code> or <code>*.zip</code> format.</li>
+</ol>
+</div>
+</div>
+<div id="example-data-set-in-vcfshiny-software" class="section level2 hasAnchor" number="2.4">
+<h2><span class="header-section-number">2.4</span> Example data set in VCFshiny software<a href="prepare-data.html#example-data-set-in-vcfshiny-software" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We provide a built-in dataset that can be used to explore VCFshiny. The data set can be directly loaded into the APP by clicking the button <em>“Use example data?”</em> of the data input module (Figure S4-II). The built-in dataset was derived from the sequencing data of published articles, including a control group and three experimental groups, with three replicates in each group (<a href="references.html#ref12">Liang Y, Xie J, Zhang Q, et al. 2022</a>). The sequencing data was first mapping to the reference, followed by gatk Variants calling and Annovar annotations.</p>
 
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="conclusion.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="run-the-app.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -290,7 +292,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/07-references.Rmd",
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/01-prepare_data.Rmd",
 "text": "Edit"
 },
 "history": {
