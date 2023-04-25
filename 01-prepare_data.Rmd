@@ -3,7 +3,7 @@ In this chapter, we describe how to prepare two different input datasets, where 
 
 ## Source of VCF input data 
 
-The Variant Call Format (VCF) is used to record gene sequence variations. It is also the first file format to be understood for genome population correlation analysis. The file is divided into two main parts: the Header comment section, which begins with *#*, and the body section.
+The Variant Call Format (VCF) is used to record gene sequence variations. It is also the first file format to be understood for genome population correlation analysis. The file is divided into two main parts: the Header comment section, which begins with `#`, and the body section.
 
 ## Source of TXT input data
 
@@ -16,10 +16,10 @@ TXT file is one of the standard storage formats after mutation data annotation. 
 knitr::include_graphics("figure/Input_File_Format.png")
 ```
 
-1. The first box represents the sample name, which can be the group of experiments and the number of repetitions, connected by the character *"-"* or *"_"*.
+1. The first box represents the sample name, which can be the group of experiments and the number of repetitions, connected by the character `"-"` or `"_"`.
 2. The second box represents the data type, which can be snp or indel data. When snp and indel are not classified in the data, **this box is not necessary**.
 3. The third box represents the data format, which can be vcf files, vcf. gz compressed files, and *Annovar* annotated TXT files.
-4. The contents of the three boxes are connected by *"."*.
+4. The contents of the three boxes are connected by `"."`.
 
 ### Input compress files requirements
 
