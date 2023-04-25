@@ -111,7 +111,7 @@ knitr::include_graphics("figure/10.Cancer_Driver_Genes.png")
   
 ## Part 2: Annotation Part
 
-VCFshiny not only provides analysis of mutated data after annotation, but also provides user friendly annotation features. VCFshiny provides two kinds of software, *Annovar* and *VariantAnnotation*, to annotate VCF files. After downloading the annotation results, they can be uploaded directly to the analysis part for analysis.
+VCFshiny not only provides analysis of mutated data after annotation, but also provides user friendly annotation features. VCFshiny provides two kinds of software, *Annovar* and *VariantAnnotation*, to annotate  human variant VCF files. After downloading the annotation results, they can be uploaded directly to the analysis part for analysis.
 
 ### Module 1: Annovar Annotation
 
@@ -128,7 +128,7 @@ knitr::include_graphics("figure/Part2_Annovar_Annotation.png")
 
 ### Module 2: VariantAnnotation Annotation
 
-VariantAnnotation ([Obenchain, V., et al. 2014](reference.html#11)) is an *R / Bioconductor* package  for the exploration and annotation of genetic variants.  Capabilities exist  for reading, writing and filtering variant call format (VCF) files.
+VariantAnnotation ([Obenchain, V., et al. 2014](reference.html#11)) is an *R / Bioconductor* package for the exploration and annotation of genetic variants. Capabilities exist  for reading, writing and filtering variant call format (VCF) files.
 
 The second Annotation tool provided by VCFshiny for variable Data is VariantAnnotation, which can be annotated by users in the "VariantAnnotation Annotation" module on the "Data Annotation" page *(Figure 3.16-I)*, which includes two parts: (1) The first part is the reading of data and the selection of annotation parameters. Users can upload their own variation data and select annotation parameters for annotation *(Figure 3.16-II)*. (2) The second part is the display part of annotation results. After data upload and annotation, annotation results will be displayed in the form of a table in the second part. At the same time, the built-in download button enables users to download annotation results for further analysis *(Figure 3.16-III)*.
 
