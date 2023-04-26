@@ -3,7 +3,7 @@ tabItem(
   fluidRow(
     tabsetPanel(
       tabPanel(title = "Annovar Annotation",
-        box(title = "Annotation Parameter Setting", width = 3,
+        box(title = "Annotation Parameter Setting", width = 3, status = "info", collapsible = T,
             fileInput(inputId = "input_file_anno", label = "Upload Your VCF Data:", multiple = F, accept = c("gz/zip"), width = "100%"),
             selectInput("Annovar_species", "Select Download Species Version:", c("hg38", "hg19"), selected = "hg38", width = "100%"),
             selectInput(inputId = "Annovar_anno_type", label = "Select Annotation Type:",
@@ -15,7 +15,7 @@ tabItem(
             actionButton("Annovar_section", "Annovar Annotation Data", width = "100%",
                          style = "background-color: #76a5af; border-radius: 28px;")
         ),
-        box(title = "Annotation Results Display", width = 9,
+        box(title = "Annotation Results Display", width = 9, status = "primary", collapsible = T,
             div(
               style = "position: absolute; right:0.5em; top: 0.5em;",
               downloadButton('Annovar_tab_download','Download TXT', class = "btn", icon = icon("download", lib = "glyphicon"))
@@ -27,13 +27,13 @@ tabItem(
         )
       ),
       tabPanel(title = "VariantAnnotation Annotation",
-        box(title = "Anntation Parameter Setting", width = 3,
+        box(title = "Anntation Parameter Setting", width = 3, status = "info", collapsible = T,
             fileInput(inputId = "input_file_Variantanno",label = "Upload Your VCF Data:", multiple = F, accept = c("gz/zip"), width = "100%"),
             selectInput("Variantanno_species", "organism type", c("hg38", "hg19"), selected = "hg38", width = "100%"),
             actionButton("VariantAnnotation_section", "VariantAnnotation Annotation Data", width = "100%",
                          style = "background-color: #76a5af; border-radius: 28px;"),
         ),
-        box(title = "Annotation Results Display", width = 9,
+        box(title = "Annotation Results Display", width = 9,  status = "primary", collapsible = T,
             div(
               style = "position: absolute; right:0.5em; top: 0.5em;",
               downloadButton('variantanno_tab_download','Download TXT', class = "btn", icon = icon("download", lib = "glyphicon"))
@@ -46,7 +46,7 @@ tabItem(
       ),
       tabPanel(title = "Download Annovar Datebase",
         uiOutput("Download_Annovar_Database_warning"),
-        box(title = "Download Parameter Setting", width = 3,
+        box(title = "Download Parameter Setting", width = 3,  status = "info", collapsible = T,
             selectInput("Annovar_download_species", "Select Download Species Version:", c("hg38", "hg19"), selected = "hg38", width = "100%"),
             selectInput("Annovar_download_database_type", "Select Download Database Type:", c("gene-based", "region-based", "filter-based"),
                         selected = "gene-based", width = "100%"),
@@ -54,7 +54,7 @@ tabItem(
             actionButton("Annovar_download_section", "Download Annovar Datebase", width = "100%",
                          style = "background-color: #76a5af; border-radius: 28px;"),
         ),
-        box(title = "List of local datebase", width = 9,
+        box(title = "List of local datebase", width = 9,  status = "primary", collapsible = T,
             div(
               style = "position: absolute; right:0.5em; top: 0.5em;",
               downloadButton('Annovar_Download_Tab_Download','Download TXT', class = "btn", icon = icon("download", lib = "glyphicon"))
@@ -63,7 +63,7 @@ tabItem(
               DT::dataTableOutput("Annovar_Download_Tab")
             )
         ),
-        box(title = "List of Datebase avaliable", width = 12,
+        box(title = "List of Datebase avaliable", width = 12, status = "success", collapsible = T,
             div(
               style = "position: absolute; right:0.5em; top: 0.5em;",
               downloadButton('Annovar_Database_Tab_Download','Download CSV', class = "btn", icon = icon("download", lib = "glyphicon"))

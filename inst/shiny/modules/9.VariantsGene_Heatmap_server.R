@@ -104,7 +104,7 @@ output$Variants_Heatmap_data <- DT::renderDataTable(
 )
 
 output$heatmap_gene_tab <- downloadHandler(
-  filename = function()  {paste0("8_Heatmap info table",".csv")},
+  filename = function()  {paste0("8_Heatmap_info_table",".csv")},
   content = function(file) {
     write.csv(Variants_heatmap_data(), file, row.names = F)
   }
