@@ -1,7 +1,7 @@
 #1-6、圈图 -----------------------------------------------------------------------------------------------------------------------------------------------
 #1-5.4 、 提取所有交叉数据（圈图准备数据）
 output$circle_group <- renderUI({
-  if (input$circle_type_ID == "snp") {
+  if(input$circle_type_ID == "snp"){
     observe(SNP_data())
     virtualSelectInput(
       inputId = "Circle_Group",  label = "Sample groups:",
@@ -9,7 +9,7 @@ output$circle_group <- renderUI({
       selected = unique(gsub("-[0-9].snp$|_[0-9].snp$|.snp", "", names(SNP_data()))),
       multiple = T, search = F, width = "100%"
     )
-  }else {
+  }else{
     observe(Indel_data())
     virtualSelectInput(
       inputId = "Circle_Group",  label = "Sample groups:",
@@ -21,9 +21,9 @@ output$circle_group <- renderUI({
 })
 
 circle_list <- eventReactive(input$circle_star, {
-  if (input$circle_type_ID == "snp") {
+  if(input$circle_type_ID == "snp"){
     variants_list <- SNP_data()
-  }else {
+  }else{
     variants_list <- Indel_data()
   }
 
@@ -52,7 +52,7 @@ circle_list <- eventReactive(input$circle_star, {
     }) %>% dplyr::bind_rows()
 
     circle_vperM_df$Value <- log10(circle_vperM_df$Value + 1)
-    if(!("chr" %in% circle_vperM_df[1,1])){
+    if(stringr::str_detect(string = circle_vperM_df[1,1], pattern = "chr", negate = T)){
       circle_vperM_df[,1] <- paste0("chr",circle_vperM_df[,1])
     }
     return(circle_vperM_df)
@@ -81,11 +81,12 @@ Circle_Plot <- eventReactive(input$circle_star,{
   incProgress(0.4, message  = "Analyse Circle data ...")
   text(0, 0, input$circle_type_ID , cex = input$circle_center_text_size)
 
-  if (length(names(circle_list)) < 3) {
-    col_fun <- RColorBrewer::brewer.pal(length(names(circle_list)), "Set1")[1:length(names(circle_list))]
-  }else {
-    col_fun <- RColorBrewer::brewer.pal(length(names(circle_list)), "Set1")
-  }
+  # if (length(names(circle_list)) < 3) {
+  #   col_fun <- RColorBrewer::brewer.pal(length(names(circle_list)), "Set1")[1:length(names(circle_list))]
+  # }else{
+  #   col_fun <- RColorBrewer::brewer.pal(length(names(circle_list)), "Set1")
+  # }
+  col_fun <- RColorBrewer::brewer.pal(length(names(circle_list)), "Set1")
 
   if(input$circle_type == "points"){
     for(x in 1:length(circle_list)){

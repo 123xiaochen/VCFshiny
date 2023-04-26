@@ -41,13 +41,14 @@ distribution_binded <- eventReactive(input$plot_distribution, {
     number_df$sample_name <- x
     number_df$group <- gsub("-[0-9].snp|_[0-9].snp|.snp|-[0-9].indel|_[0-9].indel|.indel", "", x)
     number_df$percentage <- number_df$n / sum(number_df$n) * 100
-    number_df[number_df$percentage < 2, "feature_column"] <- "Other"
+    number_df[number_df$percentage < 0.5, "feature_column"] <- "Other"
+    number_df <- number_df %>% dplyr::group_by(feature_column, sample_name, group) %>% dplyr::summarise(numbers = sum(n),
+                                                                                                        percentage = sum(percentage))
     return(number_df)
   }) %>% dplyr::bind_rows()
 
   return(distribution_bind)
 })
-
 
 output$distribution_data <- DT::renderDataTable(
   return(distribution_binded()),

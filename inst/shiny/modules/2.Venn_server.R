@@ -27,9 +27,8 @@ vennPlot_data <- eventReactive(input$venn_star,{
   venn_data_list <- venn_data_list()
   incProgress(0.4, detail = "Select Data ...")
 
-  samples <- stringr::str_subset(names(venn_data_list),
-                                 pattern = input$venn_group_ID, negate = F) %>%
-    stringr::str_subset(pattern = input$venn_type_id, negate = F)
+  samples <- stringr::str_subset(names(venn_data_list), pattern = input$venn_group_ID, negate = F) %>% stringr::str_subset(pattern = input$venn_type_id, negate = F)
+
   venn_list <- lapply(samples, function(x){
     venn_data_list[[x]][,"name"] %>% unique()
   })
