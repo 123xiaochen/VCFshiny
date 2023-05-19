@@ -23,7 +23,7 @@
 <meta name="author" content="Tao Chen; Shixue Gou" />
 
 
-<meta name="date" content="2023-04-25" />
+<meta name="date" content="2023-05-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -176,6 +176,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.1.8" data-path="run-the-app.html"><a href="run-the-app.html#module-8-genomic-feature"><i class="fa fa-check"></i><b>3.1.8</b> Module 8: Genomic Feature</a></li>
 <li class="chapter" data-level="3.1.9" data-path="run-the-app.html"><a href="run-the-app.html#module-9-highest-variant-genes"><i class="fa fa-check"></i><b>3.1.9</b> Module 9: Highest Variant Genes</a></li>
 <li class="chapter" data-level="3.1.10" data-path="run-the-app.html"><a href="run-the-app.html#module-10-cancer-driver-genes"><i class="fa fa-check"></i><b>3.1.10</b> Module 10: Cancer Driver Genes</a></li>
+<li class="chapter" data-level="3.1.11" data-path="run-the-app.html"><a href="run-the-app.html#module-11-cancer-signature"><i class="fa fa-check"></i><b>3.1.11</b> Module 11: Cancer Signature</a></li>
 </ul></li>
 <li class="chapter" data-level="3.2" data-path="run-the-app.html"><a href="run-the-app.html#part-2-annotation-part"><i class="fa fa-check"></i><b>3.2</b> Part 2: Annotation Part</a>
 <ul>
@@ -212,7 +213,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">3.1</span> Part 1: Analysis Part<a href="run-the-app.html#part-1-analysis-part" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div id="module-1-main-page" class="section level3 hasAnchor" number="3.1.1">
 <h3><span class="header-section-number">3.1.1</span> Module 1: Main Page<a href="run-the-app.html#module-1-main-page" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>In this Chapter, we will introduce step by step instruction in each module using the example built-in dataset provided at VCFshiny. After starting the VCFshiny , there are a Introduction page and nine modules: (1) Data Input; (2) Variants Numbers; (3) SNP Analysis; (4) Indel Analysis; (5) Venn Diagram; (6) Circos Plot; (7) Genomic Feature; (8) Highest Variants Genes and (9) Cancer Driver Genes on the left panel of VCFshiny <em>(Figure 3.1)</em>. For question and bug report, please leave your comment under issue section at github page. Each analysis page includes the analysis method selection module on the left with black background and the analysis module on the right with white background. Click the analysis method in the selection module to enter each analysis page.</p>
+<p>In this Chapter, we will introduce step by step instruction in each module using the example built-in dataset provided at VCFshiny. After starting the VCFshiny , there are a Introduction page and nine modules: (1) Data Input; (2) Variants Numbers; (3) SNP Analysis; (4) Indel Analysis; (5) Venn Diagram; (6) Circos Plot; (7) Genomic Feature; (8) Highest Variants Genes; (9) Cancer Driver Genes and (10) Cancer Signature on the left panel of VCFshiny <em>(Figure 3.1)</em>. For question and bug report, please leave your comment under issue section at github page. Each analysis page includes the analysis method selection module on the left with black background and the analysis module on the right with white background. Click the analysis method in the selection module to enter each analysis page.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-9"></span>
 <img src="figure/1.main_page1.png" alt="Main_Page" width="100%" />
 <p class="caption">
@@ -232,7 +233,7 @@ Figure 3.2: Data_Input
 </div>
 <div id="module-3-venn-diagram" class="section level3 hasAnchor" number="3.1.3">
 <h3><span class="header-section-number">3.1.3</span> Module 3: Venn Diagram<a href="run-the-app.html#module-3-venn-diagram" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>In order to detect the duplicate data credibility of each group, users can cross-analyze the data using the Venn R package (<a href="references.html#ref13">Dusa, Adrian. 2021</a>) and present the visualized results.</p>
+<p>In order to detect the duplicate data credibility of each group, users can cross-analyze the data using the Venn R package (<a href="references.html#ref14">Dusa, Adrian. 2021</a>) and present the visualized results.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-11"></span>
 <img src="figure/3.Venn_Analysis.png" alt="Venn_Diagram" width="100%" />
 <p class="caption">
@@ -294,7 +295,7 @@ Figure 3.9: Indel_Analysis_heatmap_plot
 </div>
 <div id="module-7-circos-plot" class="section level3 hasAnchor" number="3.1.7">
 <h3><span class="header-section-number">3.1.7</span> Module 7: Circos Plot<a href="run-the-app.html#module-7-circos-plot" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>In order to observe the distribution of SNP or Indel on chromosomes, the “Circos Plot” module uses the circlize R package (<a href="references.html#ref14">Gu, Z.et al. 2014</a>) to plot the selected data on a chromosomal circle plot according to the location of mutations.</p>
+<p>In order to observe the distribution of SNP or Indel on chromosomes, the “Circos Plot” module uses the circlize R package (<a href="references.html#ref15">Gu, Z.et al. 2014</a>) to plot the selected data on a chromosomal circle plot according to the location of mutations.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-18"></span>
 <img src="figure/7.Circos_plot.png" alt="Circos_Plot" width="100%" />
 <p class="caption">
@@ -340,42 +341,53 @@ Figure 3.14: Cancer_Dirver_Genes
 </p>
 </div>
 </div>
+<div id="module-11-cancer-signature" class="section level3 hasAnchor" number="3.1.11">
+<h3><span class="header-section-number">3.1.11</span> Module 11: Cancer Signature<a href="run-the-app.html#module-11-cancer-signature" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Mutational signals are the result of a mutational process consisting of some form of DNA damage and subsequently acted upon by DNA repair or replication mechanisms. These mutational signals reveal both endogenous and exogenous factors in the development of cancer. VCFshiny provides the analysis of mutant characteristics by software package Musicatk (<a href="references.html#ref10">Chevalier, et al., 2021</a>), which is a comprehensive mutant signature analysis kit for discovery, prediction and analysis.</p>
+<p>This moudle includes three parts: This module consists of three parts. (1) The first part is data selection and analysis parameter setting. Users can choose the data they are interested in for self-defined analysis, and the analysis libraries they are interested in include SBS (SBS96), DBS (DBS78) and Indel (IND83) for analysis <em>(Figure 3.15-I)</em>. (2) The second part is the visualization of the data. After completing the corresponding analysis, the analysis results are visualized, and user can use statistics to download the visual results <em>(Figure 3.15-II)</em>. (3) The third part is the data display part, and the data can also be downloaded <em>(Figure 3.15-III)</em>.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-23"></span>
+<img src="figure/11.Cancer_Signature.png" alt="Cancer_Signature" width="100%" />
+<p class="caption">
+Figure 3.15: Cancer_Signature
+</p>
+</div>
+</div>
 </div>
 <div id="part-2-annotation-part" class="section level2 hasAnchor" number="3.2">
 <h2><span class="header-section-number">3.2</span> Part 2: Annotation Part<a href="run-the-app.html#part-2-annotation-part" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>VCFshiny not only provides analysis of mutated data after annotation, but also provides user friendly annotation features. VCFshiny provides two kinds of software, <em>Annovar</em> and <em>VariantAnnotation</em>, to annotate human variant VCF files. After downloading the annotation results, they can be uploaded directly to the analysis part for analysis.</p>
 <div id="module-1-annovar-annotation" class="section level3 hasAnchor" number="3.2.1">
 <h3><span class="header-section-number">3.2.1</span> Module 1: Annovar Annotation<a href="run-the-app.html#module-1-annovar-annotation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>ANNOVAR (<a href="references.html#ref10">Wang K, Li M, Hakonarson H. 2010</a>) is an efficient software tool for functional annotation of genetic variation detected in the genome using up-to-date information. Given a list of chromosomal variants, starting positions, ending positions, reference nucleotides, and observed nucleotides, ANNOVAR can perform annotation in three ways:
+<p>ANNOVAR (<a href="references.html#ref11">Wang K, Li M, Hakonarson H. 2010</a>) is an efficient software tool for functional annotation of genetic variation detected in the genome using up-to-date information. Given a list of chromosomal variants, starting positions, ending positions, reference nucleotides, and observed nucleotides, ANNOVAR can perform annotation in three ways:
 1. Gene-based annotation: determines whether SNPs or CNVs cause protein coding changes and the affected amino acids.
 2. Region-based annotation: Identifying variations in specific genomic regions.
 3. Filter-based annotation: Identify variations of records in a particular database.</p>
-<p>The first Annotation tool provided by VCFshiny for mutate Data is Annovar. Users can annotate mutant data through “Annovar Annotation” module in the “Data Annotation” page <em>(Figure 3.15-I)</em>, which includes two parts: (1) The first part is data uploading and annotation parameter setting. Users can upload their own variation data and select annotation type and annotation database according to requirements <em>(Figure 3.15-II)</em>. (2) The second part is the display part of annotation results. After data upload and annotation, annotation results will be displayed in the form of a table in the second part. At the same time, the built-in download button enables users to download annotation results for further analysis <em>(Figure 3.15-III)</em>.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-23"></span>
+<p>The first Annotation tool provided by VCFshiny for mutate Data is Annovar. Users can annotate mutant data through “Annovar Annotation” module in the “Data Annotation” page <em>(Figure 3.16-I)</em>, which includes two parts: (1) The first part is data uploading and annotation parameter setting. Users can upload their own variation data and select annotation type and annotation database according to requirements <em>(Figure 3.16-II)</em>. (2) The second part is the display part of annotation results. After data upload and annotation, annotation results will be displayed in the form of a table in the second part. At the same time, the built-in download button enables users to download annotation results for further analysis <em>(Figure 3.16-III)</em>.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-24"></span>
 <img src="figure/Part2_Annovar_Annotation.png" alt="Annovar Annotation" width="100%" />
 <p class="caption">
-Figure 3.15: Annovar Annotation
+Figure 3.16: Annovar Annotation
 </p>
 </div>
 </div>
 <div id="module-2-variantannotation-annotation" class="section level3 hasAnchor" number="3.2.2">
 <h3><span class="header-section-number">3.2.2</span> Module 2: VariantAnnotation Annotation<a href="run-the-app.html#module-2-variantannotation-annotation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>VariantAnnotation (<a href="reference.html#11">Obenchain, V., et al. 2014</a>) is an <em>R / Bioconductor</em> package for the exploration and annotation of genetic variants. Capabilities exist for reading, writing and filtering variant call format (VCF) files.</p>
-<p>The second Annotation tool provided by VCFshiny for variable Data is VariantAnnotation, which can be annotated by users in the “VariantAnnotation Annotation” module on the “Data Annotation” page <em>(Figure 3.16-I)</em>, which includes two parts: (1) The first part is the reading of data and the selection of annotation parameters. Users can upload their own variation data and select annotation parameters for annotation <em>(Figure 3.16-II)</em>. (2) The second part is the display part of annotation results. After data upload and annotation, annotation results will be displayed in the form of a table in the second part. At the same time, the built-in download button enables users to download annotation results for further analysis <em>(Figure 3.16-III)</em>.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-24"></span>
+<p>VariantAnnotation (<a href="reference.html#12">Obenchain, V., et al. 2014</a>) is an <em>R / Bioconductor</em> package for the exploration and annotation of genetic variants. Capabilities exist for reading, writing and filtering variant call format (VCF) files.</p>
+<p>The second Annotation tool provided by VCFshiny for variable Data is VariantAnnotation, which can be annotated by users in the “VariantAnnotation Annotation” module on the “Data Annotation” page <em>(Figure 3.17-I)</em>, which includes two parts: (1) The first part is the reading of data and the selection of annotation parameters. Users can upload their own variation data and select annotation parameters for annotation <em>(Figure 3.17-II)</em>. (2) The second part is the display part of annotation results. After data upload and annotation, annotation results will be displayed in the form of a table in the second part. At the same time, the built-in download button enables users to download annotation results for further analysis <em>(Figure 3.17-III)</em>.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-25"></span>
 <img src="figure/Part2_VariantAnnotation_Annotation.png" alt="VariantAnnotation Annotation" width="100%" />
 <p class="caption">
-Figure 3.16: VariantAnnotation Annotation
+Figure 3.17: VariantAnnotation Annotation
 </p>
 </div>
 </div>
 <div id="module-3-download-annovar-database" class="section level3 hasAnchor" number="3.2.3">
 <h3><span class="header-section-number">3.2.3</span> Module 3: Download Annovar Database<a href="run-the-app.html#module-3-download-annovar-database" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Before using Annovar annotation in VCFshiny, required annotation Database needs to be downloaded. The “Download Annovar Database” module in the “Data Annotation” page of VCFshiny provides a convenient download page <em>(Figure 3.17-I)</em>. Users can download the database in Annovar software according to their own needs. This page includes three parts: (1) Download parameter selection section. Users can select the type and name of the database to download according to their needs <em>(Figure 3.17-II)</em>. (2) Download the display part of the database, after the completion of the database download, the current downloaded database is displayed <em>(Figure 3.17-III)</em>. (3) The database name provided by Annovar. We will display the downloaded data provided by Annovar, and users can download the database according to the display information <em>(Figure 3.17-IV)</em>.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-25"></span>
+<p>Before using Annovar annotation in VCFshiny, required annotation Database needs to be downloaded. The “Download Annovar Database” module in the “Data Annotation” page of VCFshiny provides a convenient download page <em>(Figure 3.18-I)</em>. Users can download the database in Annovar software according to their own needs. This page includes three parts: (1) Download parameter selection section. Users can select the type and name of the database to download according to their needs <em>(Figure 3.18-II)</em>. (2) Download the display part of the database, after the completion of the database download, the current downloaded database is displayed <em>(Figure 3.18-III)</em>. (3) The database name provided by Annovar. We will display the downloaded data provided by Annovar, and users can download the database according to the display information <em>(Figure 3.18-IV)</em>.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-26"></span>
 <img src="figure/Part2_Annovar_Download_Database.png" alt="Download Annovar Database" width="100%" />
 <p class="caption">
-Figure 3.17: Download Annovar Database
+Figure 3.18: Download Annovar Database
 </p>
 </div>
 

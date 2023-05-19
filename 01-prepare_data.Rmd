@@ -7,7 +7,7 @@ The Variant Call Format (VCF) is used to record gene sequence variations. It is 
 
 ## Source of TXT input data
 
-TXT file is one of the standard storage formats after mutation data annotation. Because some users cannot annotate the steps, We provide Annovar ([Wang K, Li M, Hakonarson H. 2010](references.html#ref10)) and VariantAnnotation ([Obenchain, V., et al. 2014](reference.html#11)) two methods of annotation in the VCFshiny, Users can choose to annotate themselves or use the tool.
+TXT file is one of the standard storage formats after mutation data annotation. Because some users cannot annotate the steps, We provide Annovar ([Wang K, Li M, Hakonarson H. 2010](references.html#ref11)) and VariantAnnotation ([Obenchain, V., et al. 2014](reference.html#12)) two methods of annotation in the VCFshiny, Users can choose to annotate themselves or use the tool.
 
 ## Input Data name requirements
 ### Input file name requirements
@@ -33,5 +33,5 @@ knitr::include_graphics("figure/Fold_Format.png")
 2. The compressed file can be in `*.tar.gz` or `*.zip` format.
 
 ## Example data set in VCFshiny software
-We provide a built-in dataset that can be used to explore VCFshiny. The data set can be directly loaded into the APP by clicking the button *“Use example data?”* of the data input module (Figure S4-II). The built-in dataset was derived from the sequencing data of published articles, including a control group and three experimental groups, with three replicates in each group ([Liang Y, Xie J, Zhang Q, et al. 2022](references.html#ref12)). The sequencing data was first mapping to the reference, followed by gatk Variants calling and Annovar annotations.
+We provide a built-in dataset that can be used to explore VCFshiny. The data set can be directly loaded into the APP by clicking the button *“Use example data?”* of the data input module (Figure S4-II). The built-in dataset was derived from the sequencing data of published articles, including a control group and three experimental groups, with three replicates in each group ([Liang Y, Xie J, Zhang Q, et al. 2022](references.html#ref13)). The sequencing data was first mapping to the reference, followed by gatk Variants calling and Annovar annotations.
 

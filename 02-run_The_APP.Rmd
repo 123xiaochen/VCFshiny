@@ -2,7 +2,7 @@
 
 ## Part 1: Analysis Part
 ### Module 1: Main Page
-  In this Chapter, we will introduce step by step instruction in each module using the example built-in dataset provided at VCFshiny. After starting the VCFshiny , there are a Introduction page and nine modules: (1) Data Input; (2) Variants Numbers; (3) SNP Analysis; (4) Indel Analysis; (5) Venn Diagram; (6) Circos Plot; (7) Genomic Feature; (8) Highest Variants Genes and (9) Cancer Driver Genes on the left panel of VCFshiny *(Figure 3.1)*. For question and bug report, please leave your comment under issue section at github page. Each analysis page includes the analysis method selection module on the left with black background and the analysis module on the right with white background. Click the analysis method in the selection module to enter each analysis page.
+  In this Chapter, we will introduce step by step instruction in each module using the example built-in dataset provided at VCFshiny. After starting the VCFshiny , there are a Introduction page and nine modules: (1) Data Input; (2) Variants Numbers; (3) SNP Analysis; (4) Indel Analysis; (5) Venn Diagram; (6) Circos Plot; (7) Genomic Feature; (8) Highest Variants Genes; (9) Cancer Driver Genes and (10) Cancer Signature on the left panel of VCFshiny *(Figure 3.1)*. For question and bug report, please leave your comment under issue section at github page. Each analysis page includes the analysis method selection module on the left with black background and the analysis module on the right with white background. Click the analysis method in the selection module to enter each analysis page.
   
 ```{r echo = F, fig.cap = "Main_Page", out.width="100%",fig.align='center'}
 knitr::include_graphics("figure/1.main_page1.png")
@@ -18,7 +18,7 @@ knitr::include_graphics("figure/2.Data_upload.png")
 
 ### Module 3: Venn Diagram
   
-  In order to detect the duplicate data credibility of each group, users can cross-analyze the data using the Venn R package ([Dusa, Adrian. 2021](references.html#ref13)) and present the visualized results.
+  In order to detect the duplicate data credibility of each group, users can cross-analyze the data using the Venn R package ([Dusa, Adrian. 2021](references.html#ref14)) and present the visualized results.
   
 ```{r echo = F, fig.cap = "Venn_Diagram", out.width="100%",fig.align='center'}
 knitr::include_graphics("figure/3.Venn_Analysis.png")
@@ -71,7 +71,7 @@ knitr::include_graphics("figure/6.Indel_length_barplot_plot.png")
   
 ### Module 7: Circos Plot
 
-  In order to observe the distribution of SNP or Indel on chromosomes, the “Circos Plot” module uses the circlize R package ([Gu, Z.et al. 2014](references.html#ref14)) to plot the selected data on a chromosomal circle plot according to the location of mutations. 
+  In order to observe the distribution of SNP or Indel on chromosomes, the “Circos Plot” module uses the circlize R package ([Gu, Z.et al. 2014](references.html#ref15)) to plot the selected data on a chromosomal circle plot according to the location of mutations. 
   
 ```{r echo = F, fig.cap = "Circos_Plot", out.width="100%",fig.align='center'}
 knitr::include_graphics("figure/7.Circos_plot.png")
@@ -108,19 +108,30 @@ knitr::include_graphics("figure/9.Variants_Relevant_Genes.png")
 ```{r echo = F, fig.cap = "Cancer_Dirver_Genes", out.width="100%",fig.align='center'}
 knitr::include_graphics("figure/10.Cancer_Driver_Genes.png")
 ``` 
-  
+
+
+### Module 11: Cancer Signature
+
+Mutational signals are the result of a mutational process consisting of some form of DNA damage and subsequently acted upon by DNA repair or replication mechanisms. These mutational signals reveal both endogenous and exogenous factors in the development of cancer. VCFshiny provides the analysis of mutant characteristics by software package Musicatk ([Chevalier, et al., 2021](references.html#ref10)), which is a comprehensive mutant signature analysis kit for discovery, prediction and analysis.
+
+This moudle includes three parts: This module consists of three parts. (1) The first part is data selection and analysis parameter setting. Users can choose the data they are interested in for self-defined analysis, and the analysis libraries they are interested in include SBS (SBS96), DBS (DBS78) and Indel (IND83) for analysis *(Figure 3.15-I)*. (2) The second part is the visualization of the data. After completing the corresponding analysis, the analysis results are visualized, and user can use statistics to download the visual results *(Figure 3.15-II)*. (3) The third part is the data display part, and the data can also be downloaded *(Figure 3.15-III)*.
+
+```{r echo = F, fig.cap = "Cancer_Signature", out.width="100%",fig.align='center'}
+knitr::include_graphics("figure/11.Cancer_Signature.png")
+``` 
+
 ## Part 2: Annotation Part
 
 VCFshiny not only provides analysis of mutated data after annotation, but also provides user friendly annotation features. VCFshiny provides two kinds of software, *Annovar* and *VariantAnnotation*, to annotate  human variant VCF files. After downloading the annotation results, they can be uploaded directly to the analysis part for analysis.
 
 ### Module 1: Annovar Annotation
 
-ANNOVAR ([Wang K, Li M, Hakonarson H. 2010](references.html#ref10)) is an efficient software tool for functional annotation of genetic variation detected in the genome using up-to-date information. Given a list of chromosomal variants, starting positions, ending positions, reference nucleotides, and observed nucleotides, ANNOVAR can perform annotation in three ways: 
+ANNOVAR ([Wang K, Li M, Hakonarson H. 2010](references.html#ref11)) is an efficient software tool for functional annotation of genetic variation detected in the genome using up-to-date information. Given a list of chromosomal variants, starting positions, ending positions, reference nucleotides, and observed nucleotides, ANNOVAR can perform annotation in three ways: 
 1. Gene-based annotation: determines whether SNPs or CNVs cause protein coding changes and the affected amino acids. 
 2. Region-based annotation: Identifying variations in specific genomic regions. 
 3. Filter-based annotation: Identify variations of records in a particular database.
 
-The first Annotation tool provided by VCFshiny for mutate Data is Annovar. Users can annotate mutant data through "Annovar Annotation" module in the "Data Annotation" page *(Figure 3.15-I)*, which includes two parts: (1) The first part is data uploading and annotation parameter setting. Users can upload their own variation data and select annotation type and annotation database according to requirements *(Figure 3.15-II)*. (2) The second part is the display part of annotation results. After data upload and annotation, annotation results will be displayed in the form of a table in the second part. At the same time, the built-in download button enables users to download annotation results for further analysis *(Figure 3.15-III)*.
+The first Annotation tool provided by VCFshiny for mutate Data is Annovar. Users can annotate mutant data through "Annovar Annotation" module in the "Data Annotation" page *(Figure 3.16-I)*, which includes two parts: (1) The first part is data uploading and annotation parameter setting. Users can upload their own variation data and select annotation type and annotation database according to requirements *(Figure 3.16-II)*. (2) The second part is the display part of annotation results. After data upload and annotation, annotation results will be displayed in the form of a table in the second part. At the same time, the built-in download button enables users to download annotation results for further analysis *(Figure 3.16-III)*.
 
 ```{r echo = F, fig.cap = "Annovar Annotation", out.width="100%",fig.align='center'}
 knitr::include_graphics("figure/Part2_Annovar_Annotation.png")
@@ -128,9 +139,9 @@ knitr::include_graphics("figure/Part2_Annovar_Annotation.png")
 
 ### Module 2: VariantAnnotation Annotation
 
-VariantAnnotation ([Obenchain, V., et al. 2014](reference.html#11)) is an *R / Bioconductor* package for the exploration and annotation of genetic variants. Capabilities exist  for reading, writing and filtering variant call format (VCF) files.
+VariantAnnotation ([Obenchain, V., et al. 2014](reference.html#12)) is an *R / Bioconductor* package for the exploration and annotation of genetic variants. Capabilities exist  for reading, writing and filtering variant call format (VCF) files.
 
-The second Annotation tool provided by VCFshiny for variable Data is VariantAnnotation, which can be annotated by users in the "VariantAnnotation Annotation" module on the "Data Annotation" page *(Figure 3.16-I)*, which includes two parts: (1) The first part is the reading of data and the selection of annotation parameters. Users can upload their own variation data and select annotation parameters for annotation *(Figure 3.16-II)*. (2) The second part is the display part of annotation results. After data upload and annotation, annotation results will be displayed in the form of a table in the second part. At the same time, the built-in download button enables users to download annotation results for further analysis *(Figure 3.16-III)*.
+The second Annotation tool provided by VCFshiny for variable Data is VariantAnnotation, which can be annotated by users in the "VariantAnnotation Annotation" module on the "Data Annotation" page *(Figure 3.17-I)*, which includes two parts: (1) The first part is the reading of data and the selection of annotation parameters. Users can upload their own variation data and select annotation parameters for annotation *(Figure 3.17-II)*. (2) The second part is the display part of annotation results. After data upload and annotation, annotation results will be displayed in the form of a table in the second part. At the same time, the built-in download button enables users to download annotation results for further analysis *(Figure 3.17-III)*.
 
 ```{r echo = F, fig.cap = "VariantAnnotation Annotation", out.width="100%",fig.align='center'}
 knitr::include_graphics("figure/Part2_VariantAnnotation_Annotation.png")
@@ -138,9 +149,10 @@ knitr::include_graphics("figure/Part2_VariantAnnotation_Annotation.png")
 
 ### Module 3: Download Annovar Database
 
-Before using Annovar annotation in VCFshiny, required annotation Database needs to be downloaded. The "Download Annovar Database" module in the "Data Annotation" page of VCFshiny provides a convenient download page *(Figure 3.17-I)*. Users can download the database in Annovar software according to their own needs. This page includes three parts: (1) Download parameter selection section. Users can select the type and name of the database to download according to their needs *(Figure 3.17-II)*. (2) Download the display part of the database, after the completion of the database download, the current downloaded database is displayed *(Figure 3.17-III)*. (3) The database name provided by Annovar. We will display the downloaded data provided by Annovar, and users can download the database according to the display information *(Figure 3.17-IV)*.
+Before using Annovar annotation in VCFshiny, required annotation Database needs to be downloaded. The "Download Annovar Database" module in the "Data Annotation" page of VCFshiny provides a convenient download page *(Figure 3.18-I)*. Users can download the database in Annovar software according to their own needs. This page includes three parts: (1) Download parameter selection section. Users can select the type and name of the database to download according to their needs *(Figure 3.18-II)*. (2) Download the display part of the database, after the completion of the database download, the current downloaded database is displayed *(Figure 3.18-III)*. (3) The database name provided by Annovar. We will display the downloaded data provided by Annovar, and users can download the database according to the display information *(Figure 3.18-IV)*.
 
 ```{r echo = F, fig.cap = "Download Annovar Database", out.width="100%",fig.align='center'}
 knitr::include_graphics("figure/Part2_Annovar_Download_Database.png")
 ```
+
 

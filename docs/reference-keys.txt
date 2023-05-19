@@ -21,6 +21,7 @@ fig:unnamed-chunk-22
 fig:unnamed-chunk-23
 fig:unnamed-chunk-24
 fig:unnamed-chunk-25
+fig:unnamed-chunk-26
 introduction
 background
 the-development-of-sequencing-technology
@@ -52,6 +53,7 @@ module-7-circos-plot
 module-8-genomic-feature
 module-9-highest-variant-genes
 module-10-cancer-driver-genes
+module-11-cancer-signature
 part-2-annotation-part
 module-1-annovar-annotation
 module-2-variantannotation-annotation

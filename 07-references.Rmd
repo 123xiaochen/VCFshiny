@@ -18,13 +18,15 @@
 
 <li id = 'ref9'>Nakagawa H, Fujita M. Whole genome sequencing analysis for cancer genomics and precision medicine. Cancer Sci. 2018;109(3):513-522. doi:10.1111/cas.13505</li>
 
-<li id = 'ref10'>Wang K, Li M, Hakonarson H. ANNOVAR: functional annotation of genetic variants from high-throughput sequencing data. Nucleic Acids Res. 2010;38(16):e164.</li>
+<li id = 'ref10'>Chevalier, A., et al. The Mutational Signature Comprehensive Analysis Toolkit (musicatk) for the Discovery, Prediction, and Exploration of Mutational Signatures. Cancer Res 2021;81(23):5813-5817.</li>
 
-<li id = 'ref11'>Obenchain, V., et al., VariantAnnotation: a Bioconductor package for exploration and annotation of genetic variants. Bioinformatics, 2014. 30(14): p. 2076-8.</li>
+<li id = 'ref11'>Wang K, Li M, Hakonarson H. ANNOVAR: functional annotation of genetic variants from high-throughput sequencing data. Nucleic Acids Res. 2010;38(16):e164.</li>
 
-<li id = 'ref12'>Liang Y, Xie J, Zhang Q, et al. AGBE: a dual deaminase-mediated base editor by fusing CGBE with ABE for creating a saturated mutant population with multiple editing patterns. Nucleic Acids Res. 2022;50(9):5384-5399.</li>
+<li id = 'ref12'>Obenchain, V., et al., VariantAnnotation: a Bioconductor package for exploration and annotation of genetic variants. Bioinformatics, 2014. 30(14): p. 2076-8.</li>
 
-<li id = 'ref13'>Dusa, Adrian (2021): venn: Draw Venn Diagrams. Comprehensive R Archive Network. <https://CRAN.R-project.org/package=venn></li>
+<li id = 'ref13'>Liang Y, Xie J, Zhang Q, et al. AGBE: a dual deaminase-mediated base editor by fusing CGBE with ABE for creating a saturated mutant population with multiple editing patterns. Nucleic Acids Res. 2022;50(9):5384-5399.</li>
 
-<li id = 'ref14'>Gu, Z.et al. (2014) circlize implements and enhances circular visualization in R. Bioinformatics, 30, 2811–2812.</li>
+<li id = 'ref14'>Dusa, Adrian (2021): venn: Draw Venn Diagrams. Comprehensive R Archive Network. <https://CRAN.R-project.org/package=venn></li>
+
+<li id = 'ref15'>Gu, Z.et al. (2014) circlize implements and enhances circular visualization in R. Bioinformatics, 30, 2811–2812.</li>
 
