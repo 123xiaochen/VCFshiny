@@ -259,7 +259,8 @@ annotation_variantsAnno_list <- eventReactive(input$VariantAnnotation_section, {
       df <- df[!(is.na(df$GENEID)),]
       df$SYMBOLID <- AnnotationDbi::select(org.Hs.eg.db, keys = df$GENEID, keytype = "ENTREZID", columns = "SYMBOL")[,2]
       df <- df[, c("seqnames", "start", "end", "Ref", "Alt", "LOCATION", "SYMBOLID", "GENEID", "LOCSTART","LOCEND", "QUERYID", "TXID")]
-      df <- df %>% dplyr::group_by(seqnames, start, end, Ref, Alt, LOCATION) %>% dplyr::summarise(SYMBOLID = paste(na.omit(unique(SYMBOLID)), collapse = ";"),
+      colnames(df) <- c("Chr", "Start", "End", "Ref", "Alt", "LOCATION", "SYMBOLID", "GENEID", "LOCSTART","LOCEND", "QUERYID", "TXID")
+      df <- df %>% dplyr::group_by(Chr, Start, End, Ref, Alt, LOCATION) %>% dplyr::summarise(SYMBOLID = paste(na.omit(unique(SYMBOLID)), collapse = ";"),
                                                                                           GENEID = paste(na.omit(unique(GENEID)), collapse = ";"),
                                                                                           LOCSTART = paste(na.omit(unique(LOCSTART)), collapse = ";"),
                                                                                           LOCEND = paste(na.omit(unique(LOCEND)), collapse = ";"),

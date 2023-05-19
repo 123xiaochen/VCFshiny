@@ -3,11 +3,12 @@
 #1-5.1、添加行名
 
 venn_data_list <- reactive({
-  venn_data_list <- lapply(raw_variants_list(),function(x){
-    raw_variants_list <- x
-    raw_variants_list$name <- paste(raw_variants_list[, 1], raw_variants_list[, 2], raw_variants_list[, 3], raw_variants_list[, 4],
-                                    raw_variants_list[, 5],  sep = "_")
-    raw_variants_list
+  raw_variants_list <- raw_variants_list()
+  venn_data_list <- lapply(raw_variants_list,function(x){
+    raw_variants <- x
+    raw_variants$name <- paste(raw_variants[, 1], raw_variants[, 2], raw_variants[, 3], raw_variants[, 4],
+                               raw_variants[, 5],  sep = "_")
+    raw_variants
   })
   return(venn_data_list)
 })
@@ -22,13 +23,11 @@ output$venn_group_id <- renderUI({
   }
 })
 
-vennPlot_data <- eventReactive(input$venn_star,{
+vennPlot_data <- eventReactive(input$venn_star, {
   withProgress(message = "Analyse", min = 0, max = 1, {
   venn_data_list <- venn_data_list()
   incProgress(0.4, detail = "Select Data ...")
-
   samples <- stringr::str_subset(names(venn_data_list), pattern = input$venn_group_ID, negate = F) %>% stringr::str_subset(pattern = input$venn_type_id, negate = F)
-
   venn_list <- lapply(samples, function(x){
     venn_data_list[[x]][,"name"] %>% unique()
   })
@@ -64,16 +63,17 @@ output$Venn_download_plot <- downloadHandler(
 )
 
 #1-5.3 、提取对应的交叉数据并展示
-venn_table <- eventReactive(input$venn_star,{
-  req(input$venn_group_ID, input$venn_type_id)
-  samples <- stringr::str_subset(names(venn_data_list()),pattern = input$venn_group_ID, negate = F) %>%
-    stringr::str_subset(pattern = input$venn_type_id, negate = F)
-
+venn_table <- eventReactive(input$venn_star, {
+  samples <- stringr::str_subset(names(venn_data_list()),pattern = input$venn_group_ID, negate = F) %>% stringr::str_subset(pattern = input$venn_type_id, negate = F)
   venn_binded <- lapply(samples, function(x){
-    df <- raw_variants_list()[[x]]
+      df <- venn_data_list()[[x]]
   }) %>% bind_rows()
 
-  venn_binded[venn_binded %>% duplicated.data.frame(), ]
+  duplicated_row <- (venn_binded$name %>% table() %>% as.data.frame() %>% dplyr::filter(Freq == max(Freq)))[,1]
+  duplicated_row <- as.character(duplicated_row)
+  venn_binded <- venn_binded[(venn_binded$name %in% duplicated_row) , ] %>% unique()
+  venn_binded <- subset(venn_binded, select = -c(name))
+  return(venn_binded)
 })
 
 output$venn_Table <- DT::renderDataTable(

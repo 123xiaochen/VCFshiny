@@ -35,6 +35,7 @@ VCFui <- function() {
         menuItem("Genomic Features",icon = icon("chart-bar"), tabName = "distribution"),
         menuItem("Variants Relevant Genes", icon = icon("chart-bar"), tabName = "Variants_summarise"),
         menuItem("Cancer Driver Genes", icon = icon("chart-bar"), tabName = "Variants_heatmap"),
+        menuItem("Cancer Mutational Signature", icon = icon("chart-bar"), tabName = "cancer_signature"),
         menuItem("Data Annotation", icon = icon("book"), tabName = "dataAnno")
       )
     ),
@@ -63,7 +64,8 @@ VCFui <- function() {
         source(system.file("shiny", "modules/7.Distribution_ui.R", package = "VCFshiny"), local = T)$value,
         source(system.file("shiny", "modules/8.VariantsGene_Summarise_ui.R", package = "VCFshiny"), local = T)$value,
         source(system.file("shiny", "modules/9.VariantsGene_Heatmap_ui.R", package = "VCFshiny"), local = T)$value,
-        source(system.file("shiny", "modules/10.Annotation_ui.R", package = "VCFshiny"), local = T)$value
+        source(system.file("shiny", "modules/10.mutational_signature_ui.R", package = "VCFshiny"), local = T)$value,
+        source(system.file("shiny", "modules/11.Annotation_ui.R", package = "VCFshiny"), local = T)$value
       )
     )
   )
