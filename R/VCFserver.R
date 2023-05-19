@@ -19,6 +19,7 @@ VCFserver <- function(input, output, session) {
   require(TxDb.Hsapiens.UCSC.hg38.knownGene)
   require(TxDb.Hsapiens.UCSC.hg19.knownGene)
   require(org.Hs.eg.db)
+  require(musicatk)
 
   source(system.file("shiny", "modules/1.Upload_server.R", package = "VCFshiny"), local = T)
   source(system.file("shiny", "modules/2.Venn_server.R", package = "VCFshiny"), local = T)
@@ -29,5 +30,6 @@ VCFserver <- function(input, output, session) {
   source(system.file("shiny", "modules/7.Distribution_server.R", package = "VCFshiny"), local = T)
   source(system.file("shiny", "modules/8.VariantsGene_Summarise_server.R", package = "VCFshiny"), local = T)
   source(system.file("shiny", "modules/9.VariantsGene_Heatmap_server.R", package = "VCFshiny"), local = T)
-  source(system.file("shiny", "modules/10.Annotation_server.R", package = "VCFshiny"), local = T)
+  source(system.file("shiny", "modules/10.mutational_signature_server.R", package = "VCFshiny"), local = T)
+  source(system.file("shiny", "modules/11.Annotation_server.R", package = "VCFshiny"), local = T)
 }

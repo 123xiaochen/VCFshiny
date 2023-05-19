@@ -62,8 +62,9 @@ raw_variants_list <- eventReactive(input$sample_data, {
         names(ALL_List) <- names(ALL_df_List)
         ALL_df_List <- ALL_List
       }
+
       incProgress(0.4, detail = "displaying file...")
-      #分割SNP、Indel 数据
+      # 分割SNP、Indel 数据
       if("snp" %in% strsplit(names(ALL_df_List)[1], ".", fixed = T)[[1]] |
          "indel" %in% strsplit(names(ALL_df_List)[1], ".", fixed = T)[[1]]){ #检测是否已经分过SNP、Indel了
         return(ALL_df_List)
@@ -86,6 +87,25 @@ raw_variants_list <- eventReactive(input$sample_data, {
 })
 
 
+# raw_variants_select_list <- reactive({
+#   ALL_df_List <- raw_variants_list()
+#   if("snp" %in% strsplit(names(ALL_df_List)[1], ".", fixed = T)[[1]] |
+#      "indel" %in% strsplit(names(ALL_df_List)[1], ".", fixed = T)[[1]]){ #检测是否已经分过SNP、Indel了
+#     return(ALL_df_List)
+#   }else{
+#     snp_list <- lapply(ALL_df_List, function(x){
+#       df <- x[nchar(x[, 4]) == nchar(x[, 5]), ]
+#     })
+#     names(snp_list) <- paste(names(ALL_df_List), "snp", sep = ".")
+#
+#     indel_list <- lapply(ALL_df_List, function(x){
+#       df <- x[nchar(x[, 4]) != nchar(x[, 5]), ]
+#     })
+#     names(indel_list) <- paste(names(ALL_df_List),"indel", sep = ".")
+#     raw_variant_list <- append(indel_list, snp_list)
+#     return(raw_variant_list)
+#   }
+# })
 
 #对读取数据根据group交互选择---------------------------------------------------------------------------
 output$sample_id <- renderUI({
