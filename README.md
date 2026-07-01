@@ -71,5 +71,9 @@ Please submit any reproducible bugs you encounter to the <a href="https://github
 
 We will also put most commonly encountered issues in the ***FAQ*** page.
 
-<h2 id="Citation" style="width:100%; text-align:left;font-family:&#39;Times New Roman&#39;, Times, serif;"> Citation </h2>
-Chen T, Tang C, Zheng W, et al. VCFshiny: an R/Shiny application for interactively analyzing and visualizing genetic variants. Bioinform Adv. 2023;3(1):vbad107. Published 2023 Aug 26. <a href="https://doi:10.1093/bioadv/vbad107" target="_blank">https://doi:10.1093/bioadv/vbad107</a>
+<h2 id="Citation" style="width:100%; text-align:left;font-family:'Times New Roman', Times, serif;">
+Citation
+</h2>
+
+Chen T, Tang C, Zheng W, et al. VCFshiny: an R/Shiny application for interactively analyzing and visualizing genetic variants. Bioinformatics Advances. 2023;3(1):vbad107. Published 2023 Aug 26.  <a href="https://doi.org/10.1093/bioadv/vbad107" target="_blank">https://doi.org/10.1093/bioadv/vbad107</a>
+
